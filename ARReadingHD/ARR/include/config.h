@@ -10,5 +10,6 @@
 #define ARReadingHD_config_h
 
 #define ARR_EACH_SEGMENT_EDGES_MAX 1000
+#define ARR_EACH_MARKER_SEGMENT_MAX 1000
 
 #endif
