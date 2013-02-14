@@ -23,6 +23,12 @@
 		32F7C72616CC1274009A7DF6 /* arrEdgeAlloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C72516CC1273009A7DF6 /* arrEdgeAlloc.c */; };
 		32F7C72816CC1559009A7DF6 /* arrEdgeIsCompatible.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C72716CC1559009A7DF6 /* arrEdgeIsCompatible.c */; };
 		32F7C72A16CC1607009A7DF6 /* vInnerP.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C72916CC1606009A7DF6 /* vInnerP.c */; };
+		32F7C73916CD05F7009A7DF6 /* arrMarkerReconstruct.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C73816CD05F7009A7DF6 /* arrMarkerReconstruct.c */; };
+		32F7C73C16CD0F27009A7DF6 /* arrSegmentIsInclude.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C73B16CD0F27009A7DF6 /* arrSegmentIsInclude.c */; };
+		32F7C75716CD1497009A7DF6 /* arrSegmentAddSupport.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C75616CD1497009A7DF6 /* arrSegmentAddSupport.c */; };
+		32F7C75916CD16B0009A7DF6 /* arrSegmentIsCompatible.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C75816CD16B0009A7DF6 /* arrSegmentIsCompatible.c */; };
+		32F7C75B16CD1745009A7DF6 /* arrSegmentIntersect.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C75A16CD1745009A7DF6 /* arrSegmentIntersect.c */; };
+		32F7C75D16CD19FA009A7DF6 /* arrSegmentIsEquel.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C75C16CD19FA009A7DF6 /* arrSegmentIsEquel.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +57,12 @@
 		32F7C72716CC1559009A7DF6 /* arrEdgeIsCompatible.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrEdgeIsCompatible.c; sourceTree = "<group>"; };
 		32F7C72916CC1606009A7DF6 /* vInnerP.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vInnerP.c; sourceTree = "<group>"; };
 		32F7C72B16CC188D009A7DF6 /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		32F7C73816CD05F7009A7DF6 /* arrMarkerReconstruct.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrMarkerReconstruct.c; sourceTree = "<group>"; };
+		32F7C73B16CD0F27009A7DF6 /* arrSegmentIsInclude.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrSegmentIsInclude.c; sourceTree = "<group>"; };
+		32F7C75616CD1497009A7DF6 /* arrSegmentAddSupport.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrSegmentAddSupport.c; sourceTree = "<group>"; };
+		32F7C75816CD16B0009A7DF6 /* arrSegmentIsCompatible.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrSegmentIsCompatible.c; sourceTree = "<group>"; };
+		32F7C75A16CD1745009A7DF6 /* arrSegmentIntersect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrSegmentIntersect.c; sourceTree = "<group>"; };
+		32F7C75C16CD19FA009A7DF6 /* arrSegmentIsEquel.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrSegmentIsEquel.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +142,12 @@
 				32F7C72516CC1273009A7DF6 /* arrEdgeAlloc.c */,
 				32F7C72716CC1559009A7DF6 /* arrEdgeIsCompatible.c */,
 				32F7C72916CC1606009A7DF6 /* vInnerP.c */,
+				32F7C73816CD05F7009A7DF6 /* arrMarkerReconstruct.c */,
+				32F7C73B16CD0F27009A7DF6 /* arrSegmentIsInclude.c */,
+				32F7C75616CD1497009A7DF6 /* arrSegmentAddSupport.c */,
+				32F7C75816CD16B0009A7DF6 /* arrSegmentIsCompatible.c */,
+				32F7C75A16CD1745009A7DF6 /* arrSegmentIntersect.c */,
+				32F7C75C16CD19FA009A7DF6 /* arrSegmentIsEquel.c */,
 			);
 			name = ARR;
 			path = ARReadingHD/ARR;
@@ -222,6 +240,12 @@
 				32F7C72616CC1274009A7DF6 /* arrEdgeAlloc.c in Sources */,
 				32F7C72816CC1559009A7DF6 /* arrEdgeIsCompatible.c in Sources */,
 				32F7C72A16CC1607009A7DF6 /* vInnerP.c in Sources */,
+				32F7C73916CD05F7009A7DF6 /* arrMarkerReconstruct.c in Sources */,
+				32F7C73C16CD0F27009A7DF6 /* arrSegmentIsInclude.c in Sources */,
+				32F7C75716CD1497009A7DF6 /* arrSegmentAddSupport.c in Sources */,
+				32F7C75916CD16B0009A7DF6 /* arrSegmentIsCompatible.c in Sources */,
+				32F7C75B16CD1745009A7DF6 /* arrSegmentIntersect.c in Sources */,
+				32F7C75D16CD19FA009A7DF6 /* arrSegmentIsEquel.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +357,7 @@
 				32F7C6F916CBF7D6009A7DF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

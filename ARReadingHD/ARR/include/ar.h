@@ -26,10 +26,12 @@ double arrImageGetPixelColor(ARRImage *image, int x, int y, int channel);
 
 /* ARR Marker */
 typedef struct {
-    ARRVec *c1, c2, c3, c4; // corner
-    ARRSegment chain[ARR_EACH_MARKER_SEGMENT_MAX];
+    ARRVec *c1, *c2, *c3, *c4; // corner
+    ARRSegment *chain[ARR_EACH_MARKER_SEGMENT_MAX];
+    int num;    // size of chain.
 } ARRMarker;
 void arrMarkerReconstruct(ARRMarker* marker);
+//void arrMarkerAddSeg(); // todo
 
 /* Edeg Detector */
 typedef struct {
@@ -47,7 +49,54 @@ typedef struct {
         drawCorners;
 } ARREdgeDetector;
 
+// TODO: 把画线的抽离出来
 // TODO: Edeg Detector's functions
+void arrSetDebugLine(ARREdgeDetector *detector,
+                     BOOL drawLineSegments,
+                     BOOL drawPartialMergedLineSegments,
+                     BOOL drawMergedLineSegments,
+                     BOOL drawExtendedLineSegments,
+                     BOOL drawCorners,
+                     BOOL drawMarkers,
+                     BOOL drawSectors,
+                     BOOL drawSectorGrids,
+                     BOOL drawEdges);
+
+// Edge Kernel?
+int arrEdgeKernel(ARRByte *offset, const int pitch);
+int arrEdgeKernelX(int x, int y);
+int arrEdgeKernelY(int x, int y);
+
+int arrFindEdgesInRegion(ARREdgeDetector *detecotr, const int left, const int top, const int width, const int height,
+                         ARREdge **edges);  //output edges
+int arrFindMarkers(ARREdgeDetector *detecotr,
+                   ARRMarker **makers); //output markers
+
+void arrScanLine(int offset, int step, int max, int width, int y);
+BOOL arrExtendLine( ARRVec *startpoint, ARRVec const *slope, ARRVec const * gradient, ARRVec * endpoint, const int maxlength );
+            // output endpoint???
+ARRVec *arrEdgeGradientIntensity(int x, int y);
+
+void arrSetImageBuffer(ARREdgeDetector *detector, ARRImage *image);
+
+//  Segments
+int arrFindSegments(ARREdgeDetector *detector, ARREdge **edges,
+                       ARRSegment **segments);    //output segment
+int arrMergeSegments(ARREdgeDetector *detector, ARRSegment **segments, int max_iterations,
+                         ARRSegment **mergedSegments);  // output mergedSegments
+void arrExtendSegments(ARREdgeDetector *detector, ARRSegment **segments);
+int arrFindLinesWithCorners(ARREdgeDetector *detector, ARRSegment **segments,
+                            ARRSegment **segmentsWithCorners);  //?? output segmentsWithCorners
+
+int arrFindChainOfLines(ARREdgeDetector *detector,
+                         ARRSegment *startSegment,
+                         BOOL atStartPoint,
+                         ARRSegment **segments,
+                        ARRSegment **chain);    // output chain, return length
+
+ // draw functions
+//TODO;
+
 /*
  int edgeKernel( unsigned char* offset, const int pitch );
  int edgeKernelX( int x, int y );

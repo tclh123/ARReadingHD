@@ -42,24 +42,20 @@ typedef struct {
     ARREdge *start, *end;
     ARRVec *slope;
     BOOL remove, start_corner, end_corner;
-	ARRVec *supportEdgels[ARR_EACH_SEGMENT_EDGES_MAX];
+	ARREdge *supportEdgels[ARR_EACH_SEGMENT_EDGES_MAX];
     int num;    // supportEdgels' num
 } ARRSegment;
 
 // TODO:
 ARRSegment* arrSegmentAlloc(); //LineSegment() : remove(false), start_corner(false), end_corner(false) {}
-BOOL arrSegmentIsInclude(ARREdge *edge);
-void arrSegmentAddSupport(ARREdge *edge);
-BOOL arrSegmentIsCompatible(ARRSegment *seg);
-ARRVec* arrSegmentIntersect(ARRSegment *seg);
-BOOL arrSegmentIsEquel(ARRSegment *seg);
-/*
- return (start.position.x == rhs.start.position.x &&
- start.position.y == rhs.start.position.y &&
- end.position.x == rhs.end.position.x &&
- end.position.y == rhs.end.position.y
- );
- */
+
+int arrSegmentAddSupport(ARRSegment *seg, ARREdge *edge);
+
+BOOL arrSegmentIsInclude(ARRSegment *seg, ARREdge *edge);
+BOOL arrSegmentIsCompatible(ARRSegment *seg, ARRSegment *seg2);
+ARRVec* arrSegmentIntersect(ARRSegment *seg, ARRSegment *seg2);
+BOOL arrSegmentIsEquel(ARRSegment *seg, ARRSegment *seg2);
+
 
 
 #endif
