@@ -9,7 +9,25 @@
 #ifndef ARReadingHD_config_h
 #define ARReadingHD_config_h
 
+#define DEBUG_ENABLE 0
+
+#define ARR_REGION_SIZE 40
+#define ARR_RASTER_SIZE 5
+#define ARR_THRESHOLD (16*16)
+
+/*
+#define THRESHOLD (16*16)
+#define REGIONSIZE 40
+#define EDGELSONLINE 5
+//raster: 光栅
+#define RASTERSIZE 5
+#define WHITETRESHHOLD 10
+#define THICKNESS 2
+*/
+
+#define ARR_MARKER_MAX 100
 #define ARR_EACH_SEGMENT_EDGES_MAX 1000
+#define ARR_EACH_REGION_EDGES_MAX 10000
 #define ARR_EACH_MARKER_SEGMENT_MAX 5   //4?
 
 #endif

@@ -22,7 +22,7 @@ int arrSegmentAddSupport(ARRSegment *seg, ARREdge *edge)
         return -1;
     }
         
-    seg->supportEdgels[seg->num + 1] = edgeNew;
+    seg->supportEdgels[seg->num++] = edgeNew;
     
     return 0;
 }

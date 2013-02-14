@@ -15,7 +15,7 @@ double arrVecInnerProduct( ARRVec *x, ARRVec *y )
     double   result = 0.0;
     int      i;
     
-    if( x->num != y->num ) exit(0); // exit?
+    //if( x->num != y->num ) exit(0); // exit(0)?
     
     for( i = 0; i < x->num; i++ ) {
         result += x->data[i] * y->data[i];

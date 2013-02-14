@@ -33,6 +33,7 @@ typedef struct {
 } ARREdge;
 
 ARREdge* arrEdgeAlloc(int x, int y);
+int arrEdgeFree(ARREdge*);
 BOOL arrEdgeIsCompatible(ARREdge *edge1, ARREdge *edge2);
 
 /* linesegment
@@ -42,7 +43,7 @@ typedef struct {
     ARREdge *start, *end;
     ARRVec *slope;
     BOOL remove, start_corner, end_corner;
-	ARREdge *supportEdgels[ARR_EACH_SEGMENT_EDGES_MAX];
+	ARREdge *supportEdgels[ARR_EACH_SEGMENT_EDGES_MAX];     // 当 Alloc Segment
     int num;    // supportEdgels' num
 } ARRSegment;
 

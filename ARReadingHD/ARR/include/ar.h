@@ -9,6 +9,7 @@
 #ifndef ARReadingHD_ar_h
 #define ARReadingHD_ar_h
 
+#include "common.h"
 #include "type.h"
 #include "config.h"
 #include "matrix.h"
@@ -27,7 +28,7 @@ double arrImageGetPixelColor(ARRImage *image, int x, int y, int channel);
 /* ARR Marker */
 typedef struct {
     ARRVec *c1, *c2, *c3, *c4; // corner
-    ARRSegment *chain[ARR_EACH_MARKER_SEGMENT_MAX];
+    ARRSegment *chain[ARR_EACH_MARKER_SEGMENT_MAX]; //4条边
     int num;    // size of chain.
 } ARRMarker;
 void arrMarkerReconstruct(ARRMarker* marker);
@@ -68,7 +69,7 @@ int arrEdgeKernelX(int x, int y);
 int arrEdgeKernelY(int x, int y);
 
 int arrFindEdgesInRegion(ARREdgeDetector *detecotr, const int left, const int top, const int width, const int height,
-                         ARREdge **edges);  //output edges
+                         ARREdge **edges, int *num);  //output edges, and edges' num.
 int arrFindMarkers(ARREdgeDetector *detecotr,
                    ARRMarker **makers); //output markers
 
@@ -81,9 +82,8 @@ void arrSetImageBuffer(ARREdgeDetector *detector, ARRImage *image);
 
 //  Segments
 int arrFindSegments(ARREdgeDetector *detector, ARREdge **edges,
-                       ARRSegment **segments);    //output segment
-int arrMergeSegments(ARREdgeDetector *detector, ARRSegment **segments, int max_iterations,
-                         ARRSegment **mergedSegments);  // output mergedSegments
+                       ARRSegment **segments, int *num);    //output segment, num
+int arrMergeSegments(ARREdgeDetector *detector, int max_iterations, ARRSegment **segments, int *num);  // output segments, num
 void arrExtendSegments(ARREdgeDetector *detector, ARRSegment **segments);
 int arrFindLinesWithCorners(ARREdgeDetector *detector, ARRSegment **segments,
                             ARRSegment **segmentsWithCorners);  //?? output segmentsWithCorners
