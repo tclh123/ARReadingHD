@@ -22,6 +22,7 @@ int arrFindMarkers(ARREdgeDetector *detector,
     int x, y;
     int i;
     
+    // 遍历每个 Region
     for (y = 2; y < detector->image->height - 3; y += ARR_REGION_SIZE) {
         for (x = 2; x < detector->image->width - 3; x += ARR_REGION_SIZE) {
             

@@ -31,6 +31,10 @@
 		32F7C75D16CD19FA009A7DF6 /* arrSegmentIsEquel.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C75C16CD19FA009A7DF6 /* arrSegmentIsEquel.c */; };
 		32F7C75F16CD1F71009A7DF6 /* arrFindMarkers.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C75E16CD1F71009A7DF6 /* arrFindMarkers.c */; };
 		32F7C76216CD3299009A7DF6 /* arrFindEdgesInRegion.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C76116CD3299009A7DF6 /* arrFindEdgesInRegion.c */; };
+		32F7C76416CEA110009A7DF6 /* arrEdgeGradientIntensity.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C76316CEA10F009A7DF6 /* arrEdgeGradientIntensity.c */; };
+		32F7C76616CEA503009A7DF6 /* arrEdgeKernel.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C76516CEA503009A7DF6 /* arrEdgeKernel.c */; };
+		32F7C76816CEA6DF009A7DF6 /* arrEdgeFree.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C76716CEA6DF009A7DF6 /* arrEdgeFree.c */; };
+		32F7C76A16CEA95E009A7DF6 /* arrFindSegments.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C76916CEA95D009A7DF6 /* arrFindSegments.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +72,10 @@
 		32F7C75E16CD1F71009A7DF6 /* arrFindMarkers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrFindMarkers.c; sourceTree = "<group>"; };
 		32F7C76016CD2416009A7DF6 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		32F7C76116CD3299009A7DF6 /* arrFindEdgesInRegion.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrFindEdgesInRegion.c; sourceTree = "<group>"; };
+		32F7C76316CEA10F009A7DF6 /* arrEdgeGradientIntensity.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrEdgeGradientIntensity.c; sourceTree = "<group>"; };
+		32F7C76516CEA503009A7DF6 /* arrEdgeKernel.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrEdgeKernel.c; sourceTree = "<group>"; };
+		32F7C76716CEA6DF009A7DF6 /* arrEdgeFree.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrEdgeFree.c; sourceTree = "<group>"; };
+		32F7C76916CEA95D009A7DF6 /* arrFindSegments.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrFindSegments.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +163,10 @@
 				32F7C75C16CD19FA009A7DF6 /* arrSegmentIsEquel.c */,
 				32F7C75E16CD1F71009A7DF6 /* arrFindMarkers.c */,
 				32F7C76116CD3299009A7DF6 /* arrFindEdgesInRegion.c */,
+				32F7C76316CEA10F009A7DF6 /* arrEdgeGradientIntensity.c */,
+				32F7C76516CEA503009A7DF6 /* arrEdgeKernel.c */,
+				32F7C76716CEA6DF009A7DF6 /* arrEdgeFree.c */,
+				32F7C76916CEA95D009A7DF6 /* arrFindSegments.c */,
 			);
 			name = ARR;
 			path = ARReadingHD/ARR;
@@ -256,6 +268,10 @@
 				32F7C75D16CD19FA009A7DF6 /* arrSegmentIsEquel.c in Sources */,
 				32F7C75F16CD1F71009A7DF6 /* arrFindMarkers.c in Sources */,
 				32F7C76216CD3299009A7DF6 /* arrFindEdgesInRegion.c in Sources */,
+				32F7C76416CEA110009A7DF6 /* arrEdgeGradientIntensity.c in Sources */,
+				32F7C76616CEA503009A7DF6 /* arrEdgeKernel.c in Sources */,
+				32F7C76816CEA6DF009A7DF6 /* arrEdgeFree.c in Sources */,
+				32F7C76A16CEA95E009A7DF6 /* arrFindSegments.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

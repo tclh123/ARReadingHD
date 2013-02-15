@@ -22,7 +22,7 @@ ARRByte arrImageGetPixel(ARRImage *image, int x, int y, int channel) {
 }
 
 //??
-double arrImageGetPixelColor(ARRImage *image, int x, int y, int channel) {
+double arrImageGetPixelColor(ARRImage *image, int x, int y, int channel) {  // 就是取整个？ channel = 0 ？
     ARRByte pixel = arrImageGetPixel(image, x, y, channel);
     return (double)pixel;
 }

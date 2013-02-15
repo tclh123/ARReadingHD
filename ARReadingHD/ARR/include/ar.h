@@ -65,18 +65,21 @@ void arrSetDebugLine(ARREdgeDetector *detector,
 
 // Edge Kernel?
 int arrEdgeKernel(ARRByte *offset, const int pitch);
-int arrEdgeKernelX(int x, int y);
-int arrEdgeKernelY(int x, int y);
+int arrEdgeKernelX(ARREdgeDetector *detector, int x, int y);
+int arrEdgeKernelY(ARREdgeDetector *detector, int x, int y);
 
 int arrFindEdgesInRegion(ARREdgeDetector *detecotr, const int left, const int top, const int width, const int height,
                          ARREdge **edges, int *num);  //output edges, and edges' num.
+ARRVec *arrEdgeGradientIntensity(ARREdgeDetector *detector, int x, int y);
+
 int arrFindMarkers(ARREdgeDetector *detecotr,
                    ARRMarker **makers); //output markers
+
+////
 
 void arrScanLine(int offset, int step, int max, int width, int y);
 BOOL arrExtendLine( ARRVec *startpoint, ARRVec const *slope, ARRVec const * gradient, ARRVec * endpoint, const int maxlength );
             // output endpoint???
-ARRVec *arrEdgeGradientIntensity(int x, int y);
 
 void arrSetImageBuffer(ARREdgeDetector *detector, ARRImage *image);
 
