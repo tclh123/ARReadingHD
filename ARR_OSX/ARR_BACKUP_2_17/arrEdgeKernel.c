@@ -17,7 +17,7 @@ int arrEdgeKernel(ARRByte *offset, const int pitch) {
     int ver = -3 * offset[ -2*pitch ];
 	ver += -5 * offset[ -pitch ];
 	ver += 5 * offset[ pitch ];
-	ver += 3 * offset[ 2*pitch ];       //TODO: BAD ACCESS!!!!!!????
+	ver += 3 * offset[ 2*pitch ];   // BAD ACCESS
 	
 	return abs( ver );  //c99?
 }
