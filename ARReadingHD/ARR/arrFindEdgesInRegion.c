@@ -10,7 +10,7 @@
 
 #include "ar.h"
 
-static ARREdge *edges_static[ARR_EACH_REGION_EDGES_MAX];    //(a container)
+static ARREdge edges_static[ARR_EACH_REGION_EDGES_MAX];    //(a container)
 static int edges_num;
 static int findEdge(ARREdgeDetector *detecotr,
                     int x, int y,
@@ -22,7 +22,7 @@ static int findEdge(ARREdgeDetector *detecotr,
 // 在 Region 中 找边缘像素点
 int arrFindEdgesInRegion(ARREdgeDetector *detecotr,
                          const int left, const int top, const int width, const int height,
-                         ARREdge **edges, int *num) // output edges, num
+                         ARREdge *edges, int *num) // output edges, num
 {
     edges_num = 0;
     int prev1, prev2;   // 像素差，维护两个历史 ???
@@ -118,7 +118,8 @@ static int findEdge(ARREdgeDetector *detecotr,
             arrEdgeFree(edge);
             return -1;
         }
-        edges_static[edges_num++] = edge;   // add edge to edges_static(a container).
+        edges_static[edges_num++] = *edge;   // add edge to edges_static(a container).
+        arrEdgeFree(edge);
     }
     
     *prev2 = *prev1;

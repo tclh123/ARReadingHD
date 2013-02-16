@@ -13,7 +13,6 @@
 
 int arrVecFree(ARRVec *v)
 {
-    free(v->data);
     free(v);
     
     return 0;

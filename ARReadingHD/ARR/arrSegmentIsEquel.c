@@ -12,8 +12,8 @@
 BOOL arrSegmentIsEquel(ARRSegment *seg, ARRSegment *seg2)
 {
     
-    return (seg->start->position->data[0] == seg2->start->position->data[0] &&
-            seg->start->position->data[1] == seg2->start->position->data[1] &&
-            seg->end->position->data[0] == seg2->end->position->data[0] &&
-            seg->end->position->data[1] == seg2->end->position->data[1]);
+    return (seg->start.position.x == seg2->start.position.x &&
+            seg->start.position.y == seg2->start.position.y &&
+            seg->end.position.x == seg2->end.position.x &&
+            seg->end.position.y == seg2->end.position.y);
 }

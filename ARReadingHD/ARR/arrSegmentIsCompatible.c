@@ -14,5 +14,5 @@ BOOL arrSegmentIsCompatible(ARRSegment *seg, ARRSegment *seg2)
 {
     //return  slope * cmp.slope > 0.92f; //0.38f; //cosf( 67.5f / 2 pi )
     
-    return arrVecInnerProduct(seg->slope, seg2->slope) > 0.92f;
+    return arrVecInnerProduct(&seg->slope, &seg2->slope) > 0.92f;
 }

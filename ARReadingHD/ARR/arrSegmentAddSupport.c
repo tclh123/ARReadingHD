@@ -14,15 +14,16 @@ int arrSegmentAddSupport(ARRSegment *seg, ARREdge *edge)
 {
     if(seg->num + 1 > ARR_EACH_SEGMENT_EDGES_MAX) return -1;
     
-    // edge：要不要重新alloc一个？
+    // edge：要不要重新alloc一个？ ANS：要，外面的引用直接free掉
     
-    ARREdge *edgeNew = arrEdgeAlloc(edge->position->data[0], edge->position->data[1]);
+    ARREdge *edgeNew = arrEdgeAlloc(edge->position.x, edge->position.y);
     
     if (edgeNew == NULL) {
         return -1;
     }
         
-    seg->supportEdgels[seg->num++] = edgeNew;
+    seg->supportEdgels[seg->num++] = *edgeNew;
+    arrEdgeFree(edgeNew);
     
     return 0;
 }

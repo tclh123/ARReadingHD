@@ -11,14 +11,13 @@
 
 #include "matrix.h"
 
-ARREdge* arrEdgeAlloc(int x, int y) {
+ARREdge* arrEdgeAlloc(float x, float y) {
     ARREdge *edge = (ARREdge*)malloc(sizeof(ARREdge));
     if(edge == NULL) return NULL;
     
-    edge->position = arrVecAlloc(2);
-    if(edge->position == NULL) { free(edge); return NULL; }
-    edge->position->data[0] = x;
-    edge->position->data[1] = y;
+    edge->position.x = x;
+    edge->position.y = y;
+    //edge->slope
 
     return edge;
 }

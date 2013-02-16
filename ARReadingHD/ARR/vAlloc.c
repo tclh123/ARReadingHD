@@ -11,16 +11,13 @@
 
 #include "matrix.h"
 
-ARRVec *arrVecAlloc(int num)
+ARRVec * arrVecAlloc(float x, float y)
 {
-    ARRVec *v;
-    v = (ARRVec*)malloc(sizeof(ARRVec));
-    if(v == NULL) return NULL;
+    ARRVec *vec = (ARRVec*)malloc(sizeof(ARRVec));
+    if(vec == NULL) return NULL;
     
-    v->data = (double*)malloc(sizeof(double)*num);
-    if(v->data == NULL) { free(v); return NULL; }
+    vec->x = x;
+    vec->y = y;
     
-    v->num = num;
-    
-    return v;
+    return vec;
 }

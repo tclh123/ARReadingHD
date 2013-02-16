@@ -22,13 +22,14 @@ typedef struct {
 } ARRImage;
 
 ARRImage* arrImageAlloc(int width, int height);
+// TODO: free或setData？
 ARRByte arrImageGetPixel(ARRImage *image, int x, int y, int channel);
 double arrImageGetPixelColor(ARRImage *image, int x, int y, int channel);
 
 /* ARR Marker */
 typedef struct {
-    ARRVec *c1, *c2, *c3, *c4; // corner
-    ARRSegment *chain[ARR_EACH_MARKER_SEGMENT_MAX]; //4条边
+    ARRVec c1, c2, c3, c4; // corner。 TODO：保留指针还是？
+    ARRSegment chain[ARR_EACH_MARKER_SEGMENT_MAX]; //4条边
     int num;    // size of chain.
 } ARRMarker;
 void arrMarkerReconstruct(ARRMarker* marker);
@@ -69,8 +70,8 @@ int arrEdgeKernelX(ARREdgeDetector *detector, int x, int y);
 int arrEdgeKernelY(ARREdgeDetector *detector, int x, int y);
 
 int arrFindEdgesInRegion(ARREdgeDetector *detecotr, const int left, const int top, const int width, const int height,
-                         ARREdge **edges, int *num);  //output edges, and edges' num.
-ARRVec *arrEdgeGradientIntensity(ARREdgeDetector *detector, int x, int y);
+                         ARREdge *edges, int *num);  //output edges, and edges' num.
+ARRVec arrEdgeGradientIntensity(ARREdgeDetector *detector, int x, int y);
 
 int arrFindMarkers(ARREdgeDetector *detecotr,
                    ARRMarker **makers); //output markers
@@ -84,8 +85,8 @@ BOOL arrExtendLine( ARRVec *startpoint, ARRVec const *slope, ARRVec const * grad
 void arrSetImageBuffer(ARREdgeDetector *detector, ARRImage *image);
 
 //  Segments
-int arrFindSegments(ARREdgeDetector *detector, ARREdge **edges,
-                       ARRSegment **segments, int *num);    //output segment, num
+int arrFindSegments(ARREdgeDetector *detector, ARREdge *edges, int edges_num,
+                       ARRSegment *segments, int *num);    //output segment, num
 int arrMergeSegments(ARREdgeDetector *detector, int max_iterations, ARRSegment **segments, int *num);  // output segments, num
 void arrExtendSegments(ARREdgeDetector *detector, ARRSegment **segments);
 int arrFindLinesWithCorners(ARREdgeDetector *detector, ARRSegment **segments,

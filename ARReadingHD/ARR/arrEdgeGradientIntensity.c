@@ -11,7 +11,7 @@
 
 #include "ar.h"
 
-ARRVec *arrEdgeGradientIntensity(ARREdgeDetector *detector, int x, int y)
+ARRVec arrEdgeGradientIntensity(ARREdgeDetector *detector, int x, int y)
 {
     int gx = arrImageGetPixelColor(detector->image, x-1, y-1, 0);
     gx += 2 * arrImageGetPixelColor(detector->image, x, y-1, 0);
@@ -29,8 +29,8 @@ ARRVec *arrEdgeGradientIntensity(ARREdgeDetector *detector, int x, int y)
     
     // TODO: Vector2f.get_normalized() ?
     double length = sqrt((double)gx*gx + (double)gy*gy);
-    ARRVec *vec = arrVecAlloc(2);
-    vec->data[0] = (double)gx / length;
-    vec->data[1] = (double)gy / length;
+    ARRVec vec;
+    vec.x = (double)gx / length;
+    vec.y = (double)gy / length;
     return vec;
 }

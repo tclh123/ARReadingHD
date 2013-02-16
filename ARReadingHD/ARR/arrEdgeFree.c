@@ -13,8 +13,6 @@
 
 int arrEdgeFree(ARREdge* edge)
 {
-    arrVecFree(edge->position);
-    arrVecFree(edge->slope);
     free(edge);
     return 0;
 }

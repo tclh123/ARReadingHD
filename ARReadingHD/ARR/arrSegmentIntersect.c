@@ -10,26 +10,29 @@
 
 #include "matrix.h"
 
-ARRVec* arrSegmentIntersect(ARRSegment *seg, ARRSegment *seg2)
+ARRVec arrSegmentIntersect(ARRSegment *seg, ARRSegment *seg2)
 {
-    ARRVec *intersection = arrVecAlloc(2);
-
-	double denom = ( (seg2->end->position->data[1] - seg2->start->position->data[1])
-                    * (seg->end->position->data[0] - seg->start->position->data[0]) )
+	double denom = ( (seg2->end.position.y - seg2->start.position.y)
+                    * (seg->end.position.x - seg->start.position.x) )
                     -
-                    ( (seg2->end->position->data[0] - seg2->start->position->data[0])
-                     * (seg->end->position->data[1] - seg->start->position->data[1]) );
+                    ( (seg2->end.position.x - seg2->start.position.x)
+                     * (seg->end.position.y - seg->start.position.y) );
 	
-    double nume_a = ( (seg2->end->position->data[0] - seg2->start->position->data[0])
-                     * (seg->start->position->data[1] - seg2->start->position->data[1]) )
+    double nume_a = ( (seg2->end.position.x - seg2->start.position.x)
+                     * (seg->start.position.y - seg2->start.position.y) )
                     -
-                    ( (seg2->end->position->data[1] - seg2->start->position->data[1])
-                     * (seg->start->position->data[0] - seg2->start->position->data[0]));
+                    ( (seg2->end.position.y - seg2->start.position.y)
+                     * (seg->start.position.x - seg2->start.position.x));
     
 	double ua = nume_a / denom;
 	
-	intersection->data[0] = seg->start->position->data[0] + ua * (seg->end->position->data[0] - seg->start->position->data[0]);
-	intersection->data[1] = seg->start->position->data[1] + ua * (seg->end->position->data[1] - seg->start->position->data[1]);
-	
+	float x = seg->start.position.x + ua * (seg->end.position.x - seg->start.position.x);
+	float y = seg->start.position.y + ua * (seg->end.position.y - seg->start.position.y);
+
+	//ARRVec *intersection = arrVecAlloc(x, y);
+    ARRVec intersection;
+    intersection.x = x;
+    intersection.y = y;
+    
 	return intersection;
 }

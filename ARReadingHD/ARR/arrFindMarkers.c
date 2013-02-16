@@ -27,7 +27,7 @@ int arrFindMarkers(ARREdgeDetector *detector,
         for (x = 2; x < detector->image->width - 3; x += ARR_REGION_SIZE) {
             
             // Get edges
-            ARREdge **edges = NULL;
+            ARREdge *edges = NULL;
             int edges_num = 0;
             if (arrFindEdgesInRegion(detector, x, y,
                                      MIN(detector->image->width, ARR_REGION_SIZE),
@@ -41,7 +41,7 @@ int arrFindMarkers(ARREdgeDetector *detector,
             ARRSegment **segments = NULL;
             int segments_num = 0;
             if (edges_num > 5) {
-                arrFindSegments(detector, edges, segments, &segments_num);  // =0
+                arrFindSegments(detector, edges, edges_num, segments, &segments_num);  // =0
             }
             
 #if DEBUG_ENABLE
