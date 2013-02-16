@@ -87,7 +87,9 @@ void arrSetImageBuffer(ARREdgeDetector *detector, ARRImage *image);
 //  Segments
 int arrFindSegments(ARREdgeDetector *detector, ARREdge *edges, int edges_num,
                        ARRSegment *segments, int *num);    //output segment, num
-int arrMergeSegments(ARREdgeDetector *detector, int max_iterations, ARRSegment **segments, int *num);  // output segments, num
+int arrMergeSegments(ARREdgeDetector *detector, int max_iterations,
+                     ARRSegment *segments, int *num);  // output segments, num
+
 void arrExtendSegments(ARREdgeDetector *detector, ARRSegment **segments);
 int arrFindLinesWithCorners(ARREdgeDetector *detector, ARRSegment **segments,
                             ARRSegment **segmentsWithCorners);  //?? output segmentsWithCorners

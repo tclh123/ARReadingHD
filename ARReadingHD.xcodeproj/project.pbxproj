@@ -36,6 +36,7 @@
 		32F7C76816CEA6DF009A7DF6 /* arrEdgeFree.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C76716CEA6DF009A7DF6 /* arrEdgeFree.c */; };
 		32F7C76A16CEA95E009A7DF6 /* arrFindSegments.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C76916CEA95D009A7DF6 /* arrFindSegments.c */; };
 		32F7C76C16CFCD3D009A7DF6 /* arrVecNormalize.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C76B16CFCD3C009A7DF6 /* arrVecNormalize.c */; };
+		32F7C76E16CFE704009A7DF6 /* arrMergeSegments.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C76D16CFE703009A7DF6 /* arrMergeSegments.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		32F7C76716CEA6DF009A7DF6 /* arrEdgeFree.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrEdgeFree.c; sourceTree = "<group>"; };
 		32F7C76916CEA95D009A7DF6 /* arrFindSegments.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrFindSegments.c; sourceTree = "<group>"; };
 		32F7C76B16CFCD3C009A7DF6 /* arrVecNormalize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrVecNormalize.c; sourceTree = "<group>"; };
+		32F7C76D16CFE703009A7DF6 /* arrMergeSegments.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrMergeSegments.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				32F7C76716CEA6DF009A7DF6 /* arrEdgeFree.c */,
 				32F7C76916CEA95D009A7DF6 /* arrFindSegments.c */,
 				32F7C76B16CFCD3C009A7DF6 /* arrVecNormalize.c */,
+				32F7C76D16CFE703009A7DF6 /* arrMergeSegments.c */,
 			);
 			name = ARR;
 			path = ARReadingHD/ARR;
@@ -276,6 +279,7 @@
 				32F7C76816CEA6DF009A7DF6 /* arrEdgeFree.c in Sources */,
 				32F7C76A16CEA95E009A7DF6 /* arrFindSegments.c in Sources */,
 				32F7C76C16CFCD3D009A7DF6 /* arrVecNormalize.c in Sources */,
+				32F7C76E16CFE704009A7DF6 /* arrMergeSegments.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

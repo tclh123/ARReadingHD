@@ -13,7 +13,7 @@
 
 static ARRSegment segments_static[ARR_EACH_REGION_SEGMENT_MAX];
 static int segments_num;
-static BOOL used_edge[ARR_EACH_REGION_EDGES_MAX];   // used[i] = TRUE if used.
+//static BOOL used_edge[ARR_EACH_REGION_EDGES_MAX];   // used[i] = TRUE if used.
 
 // 从 给定的 点集 中找线段
 // edges 会改变，反正后面用不到了。
@@ -25,7 +25,6 @@ int arrFindSegments(ARREdgeDetector *detector, ARREdge *edges, int edges_num,
     int i, j;
     segments_num = 0;
     ARRSegment segmentInRun;
-    memset(used_edge, 0, sizeof(used_edge));
     
     do {
         segmentInRun.num = 0;  //clear support edges
