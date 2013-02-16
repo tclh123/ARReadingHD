@@ -40,6 +40,8 @@
 		32F7C77016CFFD61009A7DF6 /* vAdd.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C76F16CFFD60009A7DF6 /* vAdd.c */; };
 		32F7C77216D006F0009A7DF6 /* arrExtendSegments.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C77116D006EF009A7DF6 /* arrExtendSegments.c */; };
 		32F7C77416D00D6D009A7DF6 /* arrFindLinesWithCorners.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C77316D00D6C009A7DF6 /* arrFindLinesWithCorners.c */; };
+		32F7C77616D01AF2009A7DF6 /* arrFindChainOfLines.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C77516D01AF2009A7DF6 /* arrFindChainOfLines.c */; };
+		32F7C77816D02979009A7DF6 /* arrMarkerCopyChain.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C77716D02979009A7DF6 /* arrMarkerCopyChain.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +88,8 @@
 		32F7C76F16CFFD60009A7DF6 /* vAdd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vAdd.c; sourceTree = "<group>"; };
 		32F7C77116D006EF009A7DF6 /* arrExtendSegments.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrExtendSegments.c; sourceTree = "<group>"; };
 		32F7C77316D00D6C009A7DF6 /* arrFindLinesWithCorners.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrFindLinesWithCorners.c; sourceTree = "<group>"; };
+		32F7C77516D01AF2009A7DF6 /* arrFindChainOfLines.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrFindChainOfLines.c; sourceTree = "<group>"; };
+		32F7C77716D02979009A7DF6 /* arrMarkerCopyChain.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrMarkerCopyChain.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +186,8 @@
 				32F7C76F16CFFD60009A7DF6 /* vAdd.c */,
 				32F7C77116D006EF009A7DF6 /* arrExtendSegments.c */,
 				32F7C77316D00D6C009A7DF6 /* arrFindLinesWithCorners.c */,
+				32F7C77516D01AF2009A7DF6 /* arrFindChainOfLines.c */,
+				32F7C77716D02979009A7DF6 /* arrMarkerCopyChain.c */,
 			);
 			name = ARR;
 			path = ARReadingHD/ARR;
@@ -292,6 +298,8 @@
 				32F7C77016CFFD61009A7DF6 /* vAdd.c in Sources */,
 				32F7C77216D006F0009A7DF6 /* arrExtendSegments.c in Sources */,
 				32F7C77416D00D6D009A7DF6 /* arrFindLinesWithCorners.c in Sources */,
+				32F7C77616D01AF2009A7DF6 /* arrFindChainOfLines.c in Sources */,
+				32F7C77816D02979009A7DF6 /* arrMarkerCopyChain.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

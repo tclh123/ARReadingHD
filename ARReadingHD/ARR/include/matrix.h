@@ -20,12 +20,12 @@ typedef struct {
 } ARRVec;
 
 ARRVec* arrVecAlloc(float x, float y);
-ARRVec* arrVecAllocMinus(ARRVec* a, ARRVec* b);
+ARRVec* arrVecAllocMinus(const ARRVec* a, const ARRVec* b);
 int arrVecFree(ARRVec*);
 int arrVecAdd(ARRVec *vec, const ARRVec *add);
 float arrVecLength(ARRVec *v);
 int arrVecNormalize(ARRVec*);
-float arrVecInnerProduct(ARRVec *vec1, ARRVec *vec2);
+float arrVecInnerProduct(const ARRVec *vec1, const ARRVec *vec2);
 
 /* Edge(edgel?) 
     边缘点，有方向

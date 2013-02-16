@@ -14,6 +14,9 @@
 #include "config.h"
 #include "matrix.h"
 
+/// 除了 ARRImage、ARREdgeDetector 结构体，其他结构体中都不含成员指针
+
+
 /* Image Buffer */
 typedef struct {
     int width;
@@ -32,8 +35,8 @@ typedef struct {
     ARRSegment chain[ARR_EACH_MARKER_SEGMENT_MAX]; //4条边
     int num;    // size of chain.
 } ARRMarker;
-void arrMarkerReconstruct(ARRMarker* marker);
-//void arrMarkerAddSeg(); // todo
+void arrMarkerReconstruct(ARRMarker *marker);
+void arrMarkerCopyChain(ARRMarker *marker, ARRSegment *chain);
 
 /* Edeg Detector */
 typedef struct {
@@ -95,51 +98,26 @@ BOOL arrExtendLine(ARREdgeDetector *detector, ARRVec *startpoint, const ARRVec *
 // 扩展（延伸）线段
 void arrExtendSegments(ARREdgeDetector *detector, ARRSegment *segments, int num);    // output segments //调用 arrExtendLine
 
-
+// 找带角点的线段
 int arrFindLinesWithCorners(ARREdgeDetector *detector, ARRSegment *segments, int num,
                             ARRSegment *lineWithCorners, int *line_num);  // output lineWithCorners, line_num
-
+// 找链（矩形4条边）
 int arrFindChainOfLines(ARREdgeDetector *detector,
-                         ARRSegment *startSegment,
-                         BOOL atStartPoint,
-                         ARRSegment **segments,
-                        ARRSegment **chain);    // output chain, return length
+                        ARRSegment *startSegment,
+                        BOOL atStartPoint,
+                        ARRSegment *segments,
+                        int *segments_num,
+                        ARRSegment *chain,
+                        int *chain_num,
+                        int *length);    // output startSegment, segments, chain, chain_num, length  // 其实chain_num == length ?
 
  // draw functions
-//TODO;
+//
 
 /*
- int edgeKernel( unsigned char* offset, const int pitch );
- int edgeKernelX( int x, int y );
- int edgeKernelY( int x, int y );
- 
- std::vector<Edgel> findEdgelsInRegion(const int left, const int top, const int width, const int height );
- std::vector<ARMarker> findMarkers();    //!!
- 
- void scanLine(int offset, int step, int max, int width, int y);
- bool extendLine( Vector2f startpoint, const Vector2f slope, const Vector2f gradient, Vector2f& endpoint, const int maxlength );
- Vector2f edgeGradientIntensity(int x, int y);
+ TODO:
  
  void setBuffer(Buffer* buffer);
- 
- std::vector<LineSegment> findLineSegment(std::vector<Edgel> edgels);
- std::vector<LineSegment> mergeLineSegments(std::vector<LineSegment> linesegments, int max_iterations);
- void extendLineSegments( std::vector<LineSegment> &lineSegments );
- std::vector<LineSegment> findLinesWithCorners(std::vector<LineSegment> &linesegments);
- 
- void findChainOfLines( LineSegment &startSegment, bool atStartPoint, std::vector<LineSegment> &linesegments, std::vector<LineSegment> &chain, int &length);
- 
- // debug functions
- 
- void debugDrawLineSegments( bool draw ) { drawLineSegments = draw; }
- void debugDrawPartialMergedLineSegments( bool draw ) { drawPartialMergedLineSegments = draw; }
- void debugDrawMergedLineSegments( bool draw ) { drawMergedLineSegments = draw; }
- void debugDrawExtendedLineSegments( bool draw ) { drawExtendedLineSegments = draw; }
- void debugDrawCorners( bool draw ) { drawCorners = draw; }
- void debugDrawMarkers( bool draw ) { drawMarkers = draw; }
- void debugDrawSectors( bool draw ) { drawSectors = draw; }
- void debugDrawEdges( bool draw ) { drawEdges = draw; }
- void debugDrawSectorGrids( bool draw ) { drawSectorGrids = draw; }
  
  void drawLine( int x1, int y1, int x2, int y2, int r, int g, int b, int t);
  void drawPoint( int x, int y, int r, int g, int b, int t);

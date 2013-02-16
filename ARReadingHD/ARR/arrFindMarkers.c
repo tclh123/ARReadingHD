@@ -13,6 +13,9 @@
 static ARRSegment mergedSegments[ARR_MERGED_SEGMENTS_MAX];
 static int mergedSegments_num = 0;
 
+static ARRMarker markers[ARR_MARKERS_MAX];
+static int markers_num = 0;
+
 int arrFindMarkers(ARREdgeDetector *detector,
                    ARRMarker **makers) //output markers
 {
@@ -116,65 +119,59 @@ int arrFindMarkers(ARREdgeDetector *detector,
     }
 #endif
     
-    // 7、detect markers
+    // 7、detect markers（Find Chain Of Lines）
+    markers_num = 0;
     
+    while (linesWithCorners_num) {
+        // 随机选 线段，并尝试做一个 chain
+        
+        ARRSegment chainSegment = linesWithCorners[0];
+        linesWithCorners[0] = linesWithCorners[--linesWithCorners_num];
+        
+        // 		std::vector<LineSegment> chain;
+        ARRSegment chain[ARR_EACH_MARKER_SEGMENT_MAX];
+        int chain_num = 0;
+        int chain_length = 1;   // TODO: 改下，这 num 跟 length 太搓了，因为 chainSegment 后面才进 chain 的
+        
+        // 检查 以 chainSegment 为首 的 chain
+        arrFindChainOfLines(detector,
+                            &chainSegment, TRUE,
+                            linesWithCorners, &linesWithCorners_num,    // linesWithCorners 找出 符合的 segment，删去
+                            chain, &chain_num, &chain_length);          // 再 加入 chain 中，直到加入3个。
+        
+        chain[chain_num++] = chainSegment;  // 至此，chain_num == chain_length
+
+        // 继续 以chainSegment 不为首 找
+        if ( chain_length < 4) {
+            arrFindChainOfLines(detector,
+                                &chainSegment, FALSE,
+                                linesWithCorners, &linesWithCorners_num,
+                                chain, &chain_num, &chain_length);
+        }
+        
+        if (chain_length > 2) {
+            ARRMarker marker;
+            
+            // marker.chain = chain;
+            arrMarkerCopyChain(&marker, chain);
+            
+            arrMarkerReconstruct(&marker);  //Reconstruct?
+            
+            markers[markers_num++] = marker;
+        }
+    }
     
+#if DEBUG_ENABLE
+    // debug functions: 画 带角点的线段
+    if (detector->drawMarkers) {
+        for (i=0; i<markers_num; i++) {
+			//drawLine( markers[i].c1.x, markers[i].c1.y, markers[i].c2.x, markers[i].c2.y, 255, 0, 0, THICKNESS);
+			//drawLine( markers[i].c2.x, markers[i].c2.y, markers[i].c3.x, markers[i].c3.y, 255, 0, 0, THICKNESS);
+			//drawLine( markers[i].c3.x, markers[i].c3.y, markers[i].c4.x, markers[i].c4.y, 255, 0, 0, THICKNESS);
+			//drawLine( markers[i].c4.x, markers[i].c4.y, markers[i].c1.x, markers[i].c1.y, 255, 0, 0, THICKNESS);
+        }
+    }
+#endif
     
     return 0;
 }
-
-
-/*
-//vind alle markers in de buffer
-std::vector<ARMarker>  EdgelDetector::findMarkers() {
-
- //....
-	
-    ///////////////////
- 
- 
-	// detect markers
-	std::vector<ARMarker> markers;
-	
-	while( linesWithCorners.size() ) {
-		
-		// pak een willekeurig segment, en probeer hier een chain mee te maken..
-		LineSegment chainSegment = linesWithCorners[0];
-		linesWithCorners[0] = linesWithCorners[ linesWithCorners.size() - 1 ];
-		linesWithCorners.resize( linesWithCorners.size() - 1 );
-		
-		std::vector<LineSegment> chain;
-		int length = 1;
-		
-		// kijk eerst of er schakels voor dit element moeten...
-		findChainOfLines( chainSegment, true, linesWithCorners, chain, length);
-        
-		chain.push_back( chainSegment );
-        
-		// en misschien ook nog wel erna..
-		if( length < 4 ) {
-			findChainOfLines( chainSegment, false, linesWithCorners, chain, length);
-		}
-        
-		if( length > 2 ) {
-			ARMarker marker;
-			
-			marker.chain = chain;
-			marker.reconstructCorners();
-			
-			markers.push_back( marker );
-		}
-	}
-	
-	if( drawMarkers ) {
-		for( int i=0, s=markers.size(); i<s; i++ ) {
-			drawLine( markers[i].c1.x, markers[i].c1.y, markers[i].c2.x, markers[i].c2.y, 255, 0, 0, THICKNESS);
-			drawLine( markers[i].c2.x, markers[i].c2.y, markers[i].c3.x, markers[i].c3.y, 255, 0, 0, THICKNESS);
-			drawLine( markers[i].c3.x, markers[i].c3.y, markers[i].c4.x, markers[i].c4.y, 255, 0, 0, THICKNESS);
-			drawLine( markers[i].c4.x, markers[i].c4.y, markers[i].c1.x, markers[i].c1.y, 255, 0, 0, THICKNESS);
-		}
-	}
-	
-	return markers;
-}
-*/
