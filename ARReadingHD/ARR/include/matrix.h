@@ -21,7 +21,9 @@ typedef struct {
 
 ARRVec* arrVecAlloc(float x, float y);
 int arrVecFree(ARRVec*);
-double arrVecInnerProduct(ARRVec *vec1, ARRVec *vec2);
+float arrVecLength(ARRVec *v);
+int arrVecNormalize(ARRVec*);
+float arrVecInnerProduct(ARRVec *vec1, ARRVec *vec2);
 
 /* Edge(edgel?) 
     边缘点，有方向

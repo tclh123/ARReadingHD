@@ -14,6 +14,7 @@
 #define ARR_REGION_SIZE 40
 #define ARR_RASTER_SIZE 5
 #define ARR_THRESHOLD (16*16)
+#define ARR_EDGES_ONLINE 5
 
 /*
 #define THRESHOLD (16*16)

@@ -38,11 +38,11 @@ int arrFindMarkers(ARREdgeDetector *detector,
             }
             
             // 若 边缘点 超过5个，找组成的 线段
-            ARRSegment **segments = NULL;
+            ARRSegment *segments = NULL;
             int segments_num = 0;
             if (edges_num > 5) {
                 arrFindSegments(detector, edges, edges_num, segments, &segments_num);  // =0
-            }
+            }  // 至此 edges 变成残留的
             
 #if DEBUG_ENABLE
             // debug functions: 画线段

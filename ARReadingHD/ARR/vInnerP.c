@@ -10,7 +10,7 @@
 
 #include "matrix.h"
 
-double arrVecInnerProduct( ARRVec *x, ARRVec *y )
+float arrVecInnerProduct( ARRVec *x, ARRVec *y )
 {
     
     return( x->x*y->x + x->y*y->y );
