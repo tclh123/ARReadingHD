@@ -21,3 +21,8 @@ ARRVec * arrVecAlloc(float x, float y)
     
     return vec;
 }
+
+ARRVec* arrVecAllocMinus(ARRVec* a, ARRVec* b)
+{
+    return arrVecAlloc(a->x-b->x, a->y-b->y);
+}

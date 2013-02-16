@@ -26,7 +26,7 @@ int arrFindMarkers(ARREdgeDetector *detector,
     for (y = 2; y < detector->image->height - 3; y += ARR_REGION_SIZE) {
         for (x = 2; x < detector->image->width - 3; x += ARR_REGION_SIZE) {
             
-            // Get edges
+            // 1、Get edges
             ARREdge *edges = NULL;
             int edges_num = 0;
             if (arrFindEdgesInRegion(detector, x, y,
@@ -37,7 +37,7 @@ int arrFindMarkers(ARREdgeDetector *detector,
                 return -1;
             }
             
-            // 若 边缘点 超过5个，找组成的 线段
+            // 2、若 边缘点 超过5个，找组成的 线段
             ARRSegment *segments = NULL;
             int segments_num = 0;
             if (edges_num > 5) {
@@ -52,7 +52,7 @@ int arrFindMarkers(ARREdgeDetector *detector,
                 }
             }
 #endif
-            
+            // 3、若 线段 超过1条，则尝试合并线段
             if (segments_num > 1) {
                 arrMergeSegments(detector, 50, segments, &segments_num);   // 合并线段，最大迭代50次
             }

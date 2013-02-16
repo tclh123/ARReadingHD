@@ -13,7 +13,7 @@
 
 #ifndef  __cplusplus
 #define TRUE 1
-#define FLASE 0
+#define FALSE 0
 typedef unsigned char BOOL;
 #endif
 

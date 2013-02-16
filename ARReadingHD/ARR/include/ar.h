@@ -79,8 +79,7 @@ int arrFindMarkers(ARREdgeDetector *detecotr,
 ////
 
 void arrScanLine(int offset, int step, int max, int width, int y);
-BOOL arrExtendLine( ARRVec *startpoint, ARRVec const *slope, ARRVec const * gradient, ARRVec * endpoint, const int maxlength );
-            // output endpoint???
+
 
 void arrSetImageBuffer(ARREdgeDetector *detector, ARRImage *image);
 
@@ -88,7 +87,7 @@ void arrSetImageBuffer(ARREdgeDetector *detector, ARRImage *image);
 int arrFindSegments(ARREdgeDetector *detector, ARREdge *edges, int edges_num,
                        ARRSegment *segments, int *num);    //output segment, num
 int arrMergeSegments(ARREdgeDetector *detector, int max_iterations,
-                     ARRSegment *segments, int *num);  // output segments, num
+                     ARRSegment *segments, int *num);  // output segments, num  // 调用 arrExtendLine
 
 void arrExtendSegments(ARREdgeDetector *detector, ARRSegment **segments);
 int arrFindLinesWithCorners(ARREdgeDetector *detector, ARRSegment **segments,

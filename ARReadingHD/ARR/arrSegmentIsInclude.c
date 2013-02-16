@@ -13,7 +13,7 @@
 
 BOOL arrSegmentIsInclude(ARRSegment *seg, ARREdge *edge)
 {
-    if(!arrEdgeIsCompatible(&seg->start, edge)) return FLASE;
+    if(!arrEdgeIsCompatible(&seg->start, edge)) return FALSE;
     
 	// distance to line: (AB x AC)/|AB|
 	// A = r1

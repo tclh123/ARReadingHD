@@ -20,7 +20,9 @@ typedef struct {
 } ARRVec;
 
 ARRVec* arrVecAlloc(float x, float y);
+ARRVec* arrVecAllocMinus(ARRVec* a, ARRVec* b);
 int arrVecFree(ARRVec*);
+int arrVecAdd(ARRVec *vec, const ARRVec *add);
 float arrVecLength(ARRVec *v);
 int arrVecNormalize(ARRVec*);
 float arrVecInnerProduct(ARRVec *vec1, ARRVec *vec2);
