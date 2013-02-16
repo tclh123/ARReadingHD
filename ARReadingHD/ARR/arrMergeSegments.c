@@ -24,10 +24,6 @@ int cmp(const void *a,const void *b)
 static SegmentDistance distances[ARR_EACH_REGION_SEGMENT_MAX];
 static int distances_num;
 
-// 用于扩展线段
-static BOOL arrExtendLine(ARREdgeDetector *detector, ARRVec *startpoint, const ARRVec *slope, const ARRVec * gradient,
-                          ARRVec * endpoint, const int maxlength );    // output endpoint
-
 // 合并线段，会调用 arrExtendLine
 int arrMergeSegments(ARREdgeDetector *detector, int max_iterations,
                      ARRSegment *segments, int *num)  // output segments, num
@@ -117,44 +113,4 @@ int arrMergeSegments(ARREdgeDetector *detector, int max_iterations,
     
     *num = segments_num;
     return 0;
-}
-
-BOOL arrExtendLine(ARREdgeDetector *detector, ARRVec *startpoint, const ARRVec *slope, const ARRVec * gradient,
-                   ARRVec * endpoint, const int maxlength )    // output endpoint
-{
-    int i;
-    const ARRVec *normal = arrVecAlloc(slope->y, -slope->x);
-    BOOL merge = TRUE;
-    
-    // 确保接头位于边缘
-    for (i = 0; i<maxlength; i++) {
-        arrVecAdd(startpoint, slope);
-        
-        if (arrEdgeKernelX(detector, startpoint->x, startpoint->y) < ARR_THRESHOLD/2 &&
-            arrEdgeKernelY(detector, startpoint->x, startpoint->y) < ARR_THRESHOLD/2) {
-            merge = FALSE;
-            break;
-        }
-        
-        ARRVec tempGradient = arrEdgeGradientIntensity(detector, startpoint->x, startpoint->y);
-        if (arrVecInnerProduct(&tempGradient, gradient)  > 0.38f) {
-            continue;
-        }
-        tempGradient = arrEdgeGradientIntensity(detector, startpoint->x + normal->x, startpoint->y + normal->y);
-        if (arrVecInnerProduct(&tempGradient, gradient)  > 0.38f) {
-            continue;
-        }
-        tempGradient = arrEdgeGradientIntensity(detector, startpoint->x - normal->x, startpoint->y - normal->y);
-        if (arrVecInnerProduct(&tempGradient, gradient)  > 0.38f) {
-            continue;
-        }
-        
-        merge = FALSE;
-        break;
-    }
-    
-    ARRVec *ret = arrVecAllocMinus(startpoint, slope);
-    *endpoint = *ret;
-    arrVecFree(ret);
-    return merge;
 }

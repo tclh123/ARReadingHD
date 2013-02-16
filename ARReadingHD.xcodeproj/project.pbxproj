@@ -38,6 +38,8 @@
 		32F7C76C16CFCD3D009A7DF6 /* arrVecNormalize.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C76B16CFCD3C009A7DF6 /* arrVecNormalize.c */; };
 		32F7C76E16CFE704009A7DF6 /* arrMergeSegments.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C76D16CFE703009A7DF6 /* arrMergeSegments.c */; };
 		32F7C77016CFFD61009A7DF6 /* vAdd.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C76F16CFFD60009A7DF6 /* vAdd.c */; };
+		32F7C77216D006F0009A7DF6 /* arrExtendSegments.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C77116D006EF009A7DF6 /* arrExtendSegments.c */; };
+		32F7C77416D00D6D009A7DF6 /* arrFindLinesWithCorners.c in Sources */ = {isa = PBXBuildFile; fileRef = 32F7C77316D00D6C009A7DF6 /* arrFindLinesWithCorners.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +84,8 @@
 		32F7C76B16CFCD3C009A7DF6 /* arrVecNormalize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrVecNormalize.c; sourceTree = "<group>"; };
 		32F7C76D16CFE703009A7DF6 /* arrMergeSegments.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrMergeSegments.c; sourceTree = "<group>"; };
 		32F7C76F16CFFD60009A7DF6 /* vAdd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vAdd.c; sourceTree = "<group>"; };
+		32F7C77116D006EF009A7DF6 /* arrExtendSegments.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrExtendSegments.c; sourceTree = "<group>"; };
+		32F7C77316D00D6C009A7DF6 /* arrFindLinesWithCorners.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrFindLinesWithCorners.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,8 @@
 				32F7C76B16CFCD3C009A7DF6 /* arrVecNormalize.c */,
 				32F7C76D16CFE703009A7DF6 /* arrMergeSegments.c */,
 				32F7C76F16CFFD60009A7DF6 /* vAdd.c */,
+				32F7C77116D006EF009A7DF6 /* arrExtendSegments.c */,
+				32F7C77316D00D6C009A7DF6 /* arrFindLinesWithCorners.c */,
 			);
 			name = ARR;
 			path = ARReadingHD/ARR;
@@ -284,6 +290,8 @@
 				32F7C76C16CFCD3D009A7DF6 /* arrVecNormalize.c in Sources */,
 				32F7C76E16CFE704009A7DF6 /* arrMergeSegments.c in Sources */,
 				32F7C77016CFFD61009A7DF6 /* vAdd.c in Sources */,
+				32F7C77216D006F0009A7DF6 /* arrExtendSegments.c in Sources */,
+				32F7C77416D00D6D009A7DF6 /* arrFindLinesWithCorners.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

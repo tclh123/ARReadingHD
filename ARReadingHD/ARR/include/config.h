@@ -13,8 +13,9 @@
 
 #define ARR_REGION_SIZE 40
 #define ARR_RASTER_SIZE 5
-#define ARR_THRESHOLD (16*16)
+#define ARR_THRESHOLD (16*16)   // 边缘点 与周围的差异 意义是什么?
 #define ARR_EDGES_ONLINE 5
+#define ARR_WHITE_TRESHHOLD 10
 
 /*
 #define THRESHOLD (16*16)
@@ -26,10 +27,13 @@
 #define THICKNESS 2
 */
 
+
 #define ARR_MARKER_MAX 100
 #define ARR_EACH_SEGMENT_EDGES_MAX 1000
 #define ARR_EACH_REGION_EDGES_MAX 10000
 #define ARR_EACH_REGION_SEGMENT_MAX 5000
+#define ARR_MERGED_SEGMENTS_MAX 10000   // 总的 merged_segments
+#define ARR_LINE_WITH_CORNERS_MAX 5000
 #define ARR_EACH_MARKER_SEGMENT_MAX 5   //4?
 
 #endif

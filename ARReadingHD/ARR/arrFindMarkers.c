@@ -10,15 +10,12 @@
 #include "ar.h"
 
 
-//static mergedSegments
-//static ARMarkerInfo2    marker_info2[AR_SQUARE_MAX];
+static ARRSegment mergedSegments[ARR_MERGED_SEGMENTS_MAX];
+static int mergedSegments_num = 0;
 
 int arrFindMarkers(ARREdgeDetector *detector,
                    ARRMarker **makers) //output markers
 {
-    ARRSegment **mergedSegments = NULL;
-    int mergedSegments_num = 0;
-    
     int x, y;
     int i;
     
@@ -67,14 +64,61 @@ int arrFindMarkers(ARREdgeDetector *detector,
 #endif
 
             // Add segments to mergedSegments
-            
-//            mergedSegments = segments;
-//            mergedSegments_num = segments_num;
-            
+            for (i=0; i<segments_num; i++) {
+                mergedSegments[mergedSegments_num++] = segments[i];
+            }
         }
     }
     
-    //mergedSegments
+    // 4、在整个图像合并线段一次（因为之前都是Region内合并过）
+    arrMergeSegments(detector, 50, mergedSegments, &mergedSegments_num);
+    
+#if DEBUG_ENABLE
+    // debug functions: 画 整图合并后的线段
+    if (detector->drawMergedLineSegments) {
+        for (i=0; i<mergedSegments_num; i++) {
+            // drawArrow
+        }
+    }
+#endif
+    
+    // 5、extend segments
+    
+    arrExtendSegments(detector, mergedSegments, mergedSegments_num);
+    
+#if DEBUG_ENABLE
+    if (detector->drawExtendedLineSegments) {
+        for (i=0; i<mergedSegments_num; i++) {
+            //drawArrow
+        }
+    }
+#endif
+    
+    // 6、detect corners (Find Segments With Corners)
+    ARRSegment *linesWithCorners = NULL;
+    int linesWithCorners_num = 0;
+    arrFindLinesWithCorners(detector, mergedSegments, mergedSegments_num, linesWithCorners, &linesWithCorners_num);
+    
+#if DEBUG_ENABLE
+    // debug functions: 画 带角点的线段
+    if (detector->drawCorners) {
+        for (i=0; i<linesWithCorners_num; i++) {
+            ARRSegment it = linesWithCorners[i];
+            if (it.start_corner) {
+                // drawPoint
+            }
+            if (it.end_corner) {
+                // drawPoint
+            }
+            
+            // drawArrow
+        }
+    }
+#endif
+    
+    // 7、detect markers
+    
+    
     
     return 0;
 }
@@ -85,40 +129,6 @@ int arrFindMarkers(ARREdgeDetector *detector,
 std::vector<ARMarker>  EdgelDetector::findMarkers() {
 
  //....
- 
-	//merge de lines nog 1 keer over de gehele image
-	mergedlinesegments = mergeLineSegments( mergedlinesegments, 50 );
-    
-	// debug function
-	if( drawMergedLineSegments ) {
-		for( int i=0, s = mergedlinesegments.size(); i<s; i++ ) {
-			drawArrow( mergedlinesegments[i].start.position.x, mergedlinesegments[i].start.position.y, mergedlinesegments[i].end.position.x, mergedlinesegments[i].end.position.y,
-					  mergedlinesegments[i].slope.x, mergedlinesegments[i].slope.y, 255, 0, 0, THICKNESS);		}
-	}
-	
-	// extend linesegments
-	
-	extendLineSegments( mergedlinesegments );
-	
-	// debug function
-	if( drawExtendedLineSegments ) {
-		for( int i=0, s = mergedlinesegments.size(); i<s; i++ ) {
-			drawArrow( mergedlinesegments[i].start.position.x, mergedlinesegments[i].start.position.y, mergedlinesegments[i].end.position.x, mergedlinesegments[i].end.position.y,
-					  mergedlinesegments[i].slope.x, mergedlinesegments[i].slope.y, 255, 255, 0, THICKNESS );		}
-	}
-	
-	std::vector<LineSegment> linesWithCorners = findLinesWithCorners( mergedlinesegments );
-	
-	if( drawCorners ) {
-		for( int i=0, s = linesWithCorners.size(); i<s; i++ ) {
-			if( linesWithCorners[i].start_corner ) { drawPoint( linesWithCorners[i].start.position.x, linesWithCorners[i].start.position.y, 255, 0, 255, THICKNESS); }
-			if( linesWithCorners[i].end_corner ) { drawPoint( linesWithCorners[i].end.position.x, linesWithCorners[i].end.position.y, 255, 0, 255, THICKNESS); }
-			
-			
-			drawArrow( linesWithCorners[i].start.position.x, linesWithCorners[i].start.position.y, linesWithCorners[i].end.position.x, linesWithCorners[i].end.position.y,
-					  linesWithCorners[i].slope.x, linesWithCorners[i].slope.y, 0, 255, 0, THICKNESS);
-		}
-	}
 	
     ///////////////////
  

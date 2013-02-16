@@ -84,14 +84,20 @@ void arrScanLine(int offset, int step, int max, int width, int y);
 void arrSetImageBuffer(ARREdgeDetector *detector, ARRImage *image);
 
 //  Segments
+// 找线段
 int arrFindSegments(ARREdgeDetector *detector, ARREdge *edges, int edges_num,
                        ARRSegment *segments, int *num);    //output segment, num
+// 合并（连接）线段
 int arrMergeSegments(ARREdgeDetector *detector, int max_iterations,
                      ARRSegment *segments, int *num);  // output segments, num  // 调用 arrExtendLine
+BOOL arrExtendLine(ARREdgeDetector *detector, ARRVec *startpoint, const ARRVec *slope, const ARRVec * gradient,
+                          ARRVec * endpoint, const int maxlength );    // output endpoint
+// 扩展（延伸）线段
+void arrExtendSegments(ARREdgeDetector *detector, ARRSegment *segments, int num);    // output segments //调用 arrExtendLine
 
-void arrExtendSegments(ARREdgeDetector *detector, ARRSegment **segments);
-int arrFindLinesWithCorners(ARREdgeDetector *detector, ARRSegment **segments,
-                            ARRSegment **segmentsWithCorners);  //?? output segmentsWithCorners
+
+int arrFindLinesWithCorners(ARREdgeDetector *detector, ARRSegment *segments, int num,
+                            ARRSegment *lineWithCorners, int *line_num);  // output lineWithCorners, line_num
 
 int arrFindChainOfLines(ARREdgeDetector *detector,
                          ARRSegment *startSegment,
