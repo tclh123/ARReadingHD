@@ -111,8 +111,8 @@ static int findEdge(ARREdgeDetector *detecotr,
     
     // find local maximum
     if (*prev1 > 0 && *prev1 > *prev2 && *prev1 > current) {
-        ARREdge *edge = arrEdgeAlloc(left + x + 1, top + y);
-        edge->slope = arrEdgeGradientIntensity(detecotr, left + x + 1, top + y);  // 用 边缘点 周围的梯度强度 计算其斜率
+        ARREdge *edge = arrEdgeAlloc(left + x - 1, top + y);
+        edge->slope = arrEdgeGradientIntensity(detecotr, left + x - 1, top + y);  // 用 边缘点 周围的梯度强度 计算其斜率
         
         if (edges_num + 1 > ARR_EACH_REGION_EDGES_MAX) {
             arrEdgeFree(edge);

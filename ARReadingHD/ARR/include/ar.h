@@ -23,7 +23,7 @@
 typedef struct {
     int width;
     int height;
-    ARRByte *data;
+    ARRByte *data;  // 在实际运行中，指向每个视频帧
 } ARRImage;
 
 ARRImage* arrImageAlloc(int width, int height);
@@ -33,12 +33,12 @@ double arrImageGetPixelColor(ARRImage *image, int x, int y, int channel);
 
 /* ARR Marker */
 typedef struct {
-    ARRVec c1, c2, c3, c4; // corner。 TODO：保留指针还是？
+    ARRVec c1, c2, c3, c4; // corner
     ARRSegment chain[ARR_EACH_MARKER_SEGMENT_MAX]; //4条边
     int num;    // size of chain.
 } ARRMarker;
 void arrMarkerReconstruct(ARRMarker *marker);
-void arrMarkerCopyChain(ARRMarker *marker, ARRSegment *chain);
+void arrMarkerCopyChain(ARRMarker *marker, ARRSegment *chain, int num);
 
 /* Edeg Detector */
 typedef struct {

@@ -11,14 +11,16 @@
 
 
 static ARRSegment mergedSegments[ARR_MERGED_SEGMENTS_MAX];
-static int mergedSegments_num = 0;
+static int mergedSegments_num; // = 0;
 
 static ARRMarker markers_static[ARR_MARKERS_MAX];
-static int markers_num = 0;
+static int markers_num;// = 0;
 
 int arrFindMarkers(ARREdgeDetector *detector,
                    ARRMarker **markers, int *num) //output markers, change num
 {
+    mergedSegments_num = 0;
+    
     int x, y;
     int i;
     
@@ -30,8 +32,8 @@ int arrFindMarkers(ARREdgeDetector *detector,
             ARREdge *edges = NULL;
             int edges_num = 0;
             if (arrFindEdgesInRegion(detector, x, y,
-                                     MIN(detector->image->width, ARR_REGION_SIZE),
-                                     MIN(detector->image->height, ARR_REGION_SIZE),
+                                     MIN(detector->image->width - x - 3, ARR_REGION_SIZE),
+                                     MIN(detector->image->height - y - 3, ARR_REGION_SIZE),
                                      &edges, &edges_num) < 0)
             {
                 return -1;
@@ -153,7 +155,7 @@ int arrFindMarkers(ARREdgeDetector *detector,
             ARRMarker marker;
             
             // marker.chain = chain;
-            arrMarkerCopyChain(&marker, chain);
+            arrMarkerCopyChain(&marker, chain, chain_num);
             
             arrMarkerReconstruct(&marker);  //Reconstruct?
             

@@ -9,10 +9,11 @@
 #include <stdio.h>
 #include "ar.h"
 
-void arrMarkerCopyChain(ARRMarker *marker, ARRSegment *chain)
+void arrMarkerCopyChain(ARRMarker *marker, ARRSegment *chain, int num)
 {
     int i;
-    for (i=0; i<ARR_EACH_MARKER_SEGMENT_MAX; i++) {
+    for (i=0; i<num; i++) {
         marker->chain[i] = chain[i];
     }
+    marker->num = num;
 }

@@ -91,7 +91,8 @@ void drawLine( int x1, int y1, int x2, int y2, int r, int g, int b, int t ) {
 int main (int argc, char * const argv[]) {
 	int i;
     
-	BOOL useCamera = TRUE;
+//	BOOL useCamera = TRUE;
+	BOOL useCamera = FALSE;
 	BOOL writeVideo = FALSE;
 	
     // create all necessary instances
@@ -119,86 +120,124 @@ int main (int argc, char * const argv[]) {
     
 	// marker detection
     
-//	ARRImage *image = malloc(<#unsigned long#>);      //new buffer
 	ARREdgeDetector *detector = (ARREdgeDetector*)malloc(sizeof(ARREdgeDetector));
     
     //debug setting
 	
 //	edgelDetector->debugDrawMarkers( true );
 
-    // you do own an iSight, don't you ?!?
-    if (! camera)
-        abort ();
-    
-    // get an initial frame and duplicate it for later work
-    IplImage *  current_frame = cvQueryFrame (camera);
-    //		draw_image    = cvCreateImage(cvSize (current_frame->width, current_frame->height), IPL_DEPTH_8U, 3);
-    draw_image    = cvCreateImage(cvSize (640, 480), IPL_DEPTH_8U, 3);
-    
-    detector->image = (ARRImage*)malloc(sizeof(ARRImage));
-    detector->image->width = draw_image->width;
-    detector->image->height = draw_image->height;
-    
-    // as long as there are images ...
-    while (current_frame = cvQueryFrame (camera))
-    {
+	if( !useCamera ) {
+		draw_image = cvLoadImage( "/Users/tclh123/Programming/Project/ARReading-Cocoa/ARReadingHD/resource/test2.png", CV_LOAD_IMAGE_COLOR);
+		if(!draw_image){
+			printf("Could not load image file");
+			exit(0);
+		}
         
-        // 缩放原图像到目标图像
-        cvResize (current_frame, draw_image, CV_INTER_LINEAR);
+        // show the image
+        cvShowImage( WINDOW_NAME, draw_image);
         
-        // Perform a Gaussian blur
-        //cvSmooth( draw_image, draw_image, CV_GAUSSIAN, 3, 3 );
+        // load the image to buffer
         
-        //detector->image->data = (ARRByte*)malloc(sizeof(ARRByte)*draw_image->width*draw_image->height);
+        detector->image = (ARRImage*)malloc(sizeof(ARRImage));
+        detector->image->width = draw_image->width;
+        detector->image->height = draw_image->height;
+        
         detector->image->data = (unsigned char *)draw_image->imageData;
         
+        // detect markers
         ARRMarker *markers = NULL;
         int markers_num = 0;
         arrFindMarkers(detector, &markers, &markers_num);
         
-//        debugDrawAll();
+        //        debugDrawAll();
         for (i=0; i<markers_num; i++) {
-			drawLine( markers[i].c1.x, markers[i].c1.y, markers[i].c2.x, markers[i].c2.y, 255, 0, 0, THICKNESS);
-			drawLine( markers[i].c2.x, markers[i].c2.y, markers[i].c3.x, markers[i].c3.y, 255, 0, 0, THICKNESS);
-			drawLine( markers[i].c3.x, markers[i].c3.y, markers[i].c4.x, markers[i].c4.y, 255, 0, 0, THICKNESS);
-			drawLine( markers[i].c4.x, markers[i].c4.y, markers[i].c1.x, markers[i].c1.y, 255, 0, 0, THICKNESS);
+            drawLine( markers[i].c1.x, markers[i].c1.y, markers[i].c2.x, markers[i].c2.y, 255, 0, 0, THICKNESS);
+            drawLine( markers[i].c2.x, markers[i].c2.y, markers[i].c3.x, markers[i].c3.y, 255, 0, 0, THICKNESS);
+            drawLine( markers[i].c3.x, markers[i].c3.y, markers[i].c4.x, markers[i].c4.y, 255, 0, 0, THICKNESS);
+            drawLine( markers[i].c4.x, markers[i].c4.y, markers[i].c1.x, markers[i].c1.y, 255, 0, 0, THICKNESS);
         }
         
-        // just show the image
-        cvShowImage (WINDOW_NAME, draw_image);
+        // Show the processed image
+        cvShowImage( WINDOW_NAME, draw_image);
         
-        if( writeVideo ) {
-            cvWriteFrame(writer,draw_image);      // add the frame to the file
+        cvWaitKey(0);
+        cvReleaseImage( &draw_image );
+        cvDestroyWindow( WINDOW_NAME );
+        return 0;
+        
+	} else {
+        // you do own an iSight, don't you ?!?
+        if (! camera)
+            abort ();
+        
+        // get an initial frame and duplicate it for later work
+        IplImage *  current_frame = cvQueryFrame (camera);
+        draw_image    = cvCreateImage(cvSize (640, 480), IPL_DEPTH_8U, 3);
+        
+        detector->image = (ARRImage*)malloc(sizeof(ARRImage));
+        detector->image->width = draw_image->width;
+        detector->image->height = draw_image->height;
+        
+        // as long as there are images ...
+        while (current_frame = cvQueryFrame (camera))
+        {
+            
+            // 缩放原图像到目标图像
+            cvResize (current_frame, draw_image, CV_INTER_LINEAR);
+            
+            // Perform a Gaussian blur
+            //cvSmooth( draw_image, draw_image, CV_GAUSSIAN, 3, 3 );
+            
+            detector->image->data = (unsigned char *)draw_image->imageData;
+            
+            ARRMarker *markers = NULL;
+            int markers_num = 0;
+            arrFindMarkers(detector, &markers, &markers_num);
+            
+            //        debugDrawAll();
+            for (i=0; i<markers_num; i++) {
+                drawLine( markers[i].c1.x, markers[i].c1.y, markers[i].c2.x, markers[i].c2.y, 255, 0, 0, THICKNESS);
+                drawLine( markers[i].c2.x, markers[i].c2.y, markers[i].c3.x, markers[i].c3.y, 255, 0, 0, THICKNESS);
+                drawLine( markers[i].c3.x, markers[i].c3.y, markers[i].c4.x, markers[i].c4.y, 255, 0, 0, THICKNESS);
+                drawLine( markers[i].c4.x, markers[i].c4.y, markers[i].c1.x, markers[i].c1.y, 255, 0, 0, THICKNESS);
+            }
+            
+            // just show the image
+            cvShowImage (WINDOW_NAME, draw_image);
+            
+            if( writeVideo ) {
+                cvWriteFrame(writer,draw_image);      // add the frame to the file
+            }
+            
+            // wait a tenth of a second for keypress and window drawing
+            int key = cvWaitKey (10);
+            if (key == 'q' || key == 'Q')
+                break;
+            
+            //        // toggle debug setting.
+            //        switch( key ) {
+            //            case '4':	edgelDetector->debugDrawLineSegments( !edgelDetector->drawLineSegments );
+            //                break;
+            //            case '5':	edgelDetector->debugDrawPartialMergedLineSegments( !edgelDetector->drawPartialMergedLineSegments );
+            //                break;
+            //            case '6':	edgelDetector->debugDrawMergedLineSegments( !edgelDetector->drawMergedLineSegments );
+            //                break;
+            //            case '7':	edgelDetector->debugDrawExtendedLineSegments( !edgelDetector->drawExtendedLineSegments );
+            //                break;
+            //            case '9':	edgelDetector->debugDrawMarkers( !edgelDetector->drawMarkers );
+            //                break;
+            //            case '1':	edgelDetector->debugDrawSectors( !edgelDetector->drawSectors );
+            //                break;
+            //            case '2':	edgelDetector->debugDrawSectorGrids( !edgelDetector->drawSectorGrids );
+            //                break;
+            //            case '3':	edgelDetector->debugDrawEdges( !edgelDetector->drawEdges );
+            //                break;
+            //            case '8':	edgelDetector->debugDrawCorners( !edgelDetector->drawCorners );
+            //                break;
+            //            default:
+            //                break;
+            //        }
         }
-        
-        // wait a tenth of a second for keypress and window drawing
-        int key = cvWaitKey (10);
-        if (key == 'q' || key == 'Q')
-            break;
-        
-//        // toggle debug setting.
-//        switch( key ) {
-//            case '4':	edgelDetector->debugDrawLineSegments( !edgelDetector->drawLineSegments );
-//                break;
-//            case '5':	edgelDetector->debugDrawPartialMergedLineSegments( !edgelDetector->drawPartialMergedLineSegments );
-//                break;
-//            case '6':	edgelDetector->debugDrawMergedLineSegments( !edgelDetector->drawMergedLineSegments );
-//                break;
-//            case '7':	edgelDetector->debugDrawExtendedLineSegments( !edgelDetector->drawExtendedLineSegments );
-//                break;
-//            case '9':	edgelDetector->debugDrawMarkers( !edgelDetector->drawMarkers );
-//                break;
-//            case '1':	edgelDetector->debugDrawSectors( !edgelDetector->drawSectors );
-//                break;
-//            case '2':	edgelDetector->debugDrawSectorGrids( !edgelDetector->drawSectorGrids );
-//                break;
-//            case '3':	edgelDetector->debugDrawEdges( !edgelDetector->drawEdges );
-//                break;
-//            case '8':	edgelDetector->debugDrawCorners( !edgelDetector->drawCorners );
-//                break;
-//            default:
-//                break;
-//        }
     }
 	if( writeVideo ) {
 		cvReleaseVideoWriter(&writer);

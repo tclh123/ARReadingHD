@@ -30,7 +30,7 @@ ARRVec arrEdgeGradientIntensity(ARREdgeDetector *detector, int x, int y)
     // TODO: Vector2f.get_normalized() ?
     double length = sqrt((double)gx*gx + (double)gy*gy);
     ARRVec vec;
-    vec.x = (double)gx / length;
-    vec.y = (double)gy / length;
+    vec.x = (double)gy / length;
+    vec.y = (double)gx / length;
     return vec;
 }

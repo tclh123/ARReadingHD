@@ -46,12 +46,13 @@ typedef struct {
     ARREdge start, end;
     ARRVec slope;
     BOOL remove, start_corner, end_corner;
-	ARREdge supportEdgels[ARR_EACH_SEGMENT_EDGES_MAX];     // 当 Alloc Segment
+	ARREdge supportEdgels[ARR_EACH_SEGMENT_EDGES_MAX];     // 当 Alloc Segment?
     int num;    // supportEdgels' num
 } ARRSegment;
 
 // TODO:
-ARRSegment* arrSegmentAlloc(); //LineSegment() : remove(false), start_corner(false), end_corner(false) {}
+//ARRSegment* arrSegmentAlloc(); //LineSegment() : remove(false), start_corner(false), end_corner(false) {}
+void arrSegmentInit(ARRSegment*);
 int arrSegmentFree(ARRSegment*);
 
 int arrSegmentAddSupport(ARRSegment *seg, ARREdge *edge);

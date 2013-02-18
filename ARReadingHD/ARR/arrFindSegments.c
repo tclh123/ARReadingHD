@@ -13,7 +13,6 @@
 
 static ARRSegment segments_static[ARR_EACH_REGION_SEGMENT_MAX];
 static int segments_num;
-//static BOOL used_edge[ARR_EACH_REGION_EDGES_MAX];   // used[i] = TRUE if used.
 
 // 从 给定的 点集 中找线段
 // edges 会改变，反正后面用不到了。
@@ -25,6 +24,7 @@ int arrFindSegments(ARREdgeDetector *detector, ARREdge *edges, int edges_num,
     int i, j;
     segments_num = 0;
     ARRSegment segmentInRun;
+    arrSegmentInit(&segmentInRun);
     
     do {
         segmentInRun.num = 0;  //clear support edges
@@ -50,6 +50,7 @@ int arrFindSegments(ARREdgeDetector *detector, ARREdge *edges, int edges_num,
             if (iteration < max_iterations) {
                 //2 edges
                 ARRSegment segment;     //TODO: ARRSegment需要一个初始化，不然 segment.num 没东西。 注意所有东西 struct的初始化。。
+                arrSegmentInit(&segment);
                 segment.start = r1;
                 segment.end = r2;
                 segment.slope = r1.slope;
