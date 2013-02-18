@@ -16,7 +16,8 @@ static int findEdge(ARREdgeDetector *detecotr,
                     int x, int y,
                     const int left, const int top,
                     int *prev1, int *prev2,
-                    ARRByte *offset, const int pitch);
+                    ARRByte *offset, const int pitch,
+                    BOOL isHorizontal);
 
 
 // 在 Region 中 找边缘像素点
@@ -52,7 +53,7 @@ int arrFindEdgesInRegion(ARREdgeDetector *detecotr,
         const int pitch = 3;    //大概就是间隔的意思，每个横向扫描线，3个channel为一个pixel
         
         for (x = 0; x < width; x++, offset += pitch) {
-            findEdge(detecotr, x, y, left, top, &prev1, &prev2, offset, pitch);
+            findEdge(detecotr, x, y, left, top, &prev1, &prev2, offset, pitch, TRUE);
         }
     }
 
@@ -72,7 +73,7 @@ int arrFindEdgesInRegion(ARREdgeDetector *detecotr,
         prev1 = prev2 = 0;
         
         for( int y=0; y<height; y++, offset += pitch) {
-            findEdge(detecotr, x, y, left, top, &prev1, &prev2, offset, pitch);
+            findEdge(detecotr, x, y, left, top, &prev1, &prev2, offset, pitch, FALSE);
         }
     }
 
@@ -93,9 +94,10 @@ int arrFindEdgesInRegion(ARREdgeDetector *detecotr,
 
 static int findEdge(ARREdgeDetector *detecotr,
                     int x, int y,
-                const int left, const int top,
-                int *prev1, int *prev2,
-                ARRByte *offset, const int pitch)
+                    const int left, const int top,
+                    int *prev1, int *prev2,
+                    ARRByte *offset, const int pitch,
+                    BOOL isHorizontal)
 {
     int current = arrEdgeKernel(offset, pitch); // arrEdgeKernel 能反应像素点与周围的对比度？类似
     
@@ -111,8 +113,15 @@ static int findEdge(ARREdgeDetector *detecotr,
     
     // find local maximum
     if (*prev1 > 0 && *prev1 > *prev2 && *prev1 > current) {
-        ARREdge *edge = arrEdgeAlloc(left + x - 1, top + y);
-        edge->slope = arrEdgeGradientIntensity(detecotr, left + x - 1, top + y);  // 用 边缘点 周围的梯度强度 计算其斜率
+        float nx = left + x, ny = top + y;  // 这里是整数（像素）
+        if (isHorizontal) {
+            nx -= 1;
+        }
+        else {
+            ny -= 1;
+        }
+        ARREdge *edge = arrEdgeAlloc(nx, ny);
+        edge->slope = arrEdgeGradientIntensity(detecotr, nx, ny);  // 用 边缘点 周围的梯度强度 计算其斜率
         
         if (edges_num + 1 > ARR_EACH_REGION_EDGES_MAX) {
             arrEdgeFree(edge);

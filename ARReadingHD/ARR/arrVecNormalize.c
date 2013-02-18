@@ -13,8 +13,13 @@
 int arrVecNormalize(ARRVec *v)
 {
     float length = arrVecLength(v);
-    v->x /= length;
-    v->y /= length;
+//    v->x /= length;       // 别用除法，精度问题
+//    v->y /= length;
+    
+    const float inv_length = 1.0f / length;
+    v->x *= inv_length;
+    v->y *= inv_length;
+    
     return 0;
 }
 

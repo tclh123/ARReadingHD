@@ -121,4 +121,15 @@ int arrFindChainOfLines(ARREdgeDetector *detector,
  void drawArrow( int x1, int y1, int x2, int y2, float xn, float yn, int r, int g, int b, int t);
  */
 
+
+////////////////////////////////////////////////////////////////////////
+// DEBUGS
+
+void debug_prints(void *p, int n, void (*print_sub)(void *p, int i));
+void print_vec(ARRVec *vec);
+// edge < (1,2), (3,4) >
+void print_edge(void *p, int i);
+// segment < start=edge < (1,2), (3,4) >, end=edge < (1,2), (3,4) >, slope=(5,6), remove=0, start_corner=0, end_corner=0, supportEdgels[0]=edge < (1,2), (3,4) >, num=0 >
+void print_segment(void *p, int i);
+
 #endif

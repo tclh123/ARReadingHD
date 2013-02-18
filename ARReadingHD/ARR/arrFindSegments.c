@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include "ar.h"
 
@@ -19,7 +20,8 @@ static int segments_num;
 int arrFindSegments(ARREdgeDetector *detector, ARREdge *edges, int edges_num,
                     ARRSegment **segments, int *num)    //output segment, change num
 {
-    srand(time(NULL));
+//    srand(time(NULL));
+    srand(0);
     
     int i, j;
     segments_num = 0;
@@ -31,6 +33,7 @@ int arrFindSegments(ARREdgeDetector *detector, ARREdge *edges, int edges_num,
         
         // 用随即算法 找出 support 最多的 线段，赋给 segmentInRun
         for (i = 0; i < 25; i++) {
+            
             ARREdge r1, r2;
             
             const int max_iterations = 100;
@@ -48,6 +51,7 @@ int arrFindSegments(ARREdgeDetector *detector, ARREdge *edges, int edges_num,
             } while ( (ir1 == ir2 || !arrEdgeIsCompatible(&r1, &r2)) && iteration < max_iterations);
             
             if (iteration < max_iterations) {
+                
                 //2 edges
                 ARRSegment segment;     //TODO: ARRSegment需要一个初始化，不然 segment.num 没东西。 注意所有东西 struct的初始化。。
                 arrSegmentInit(&segment);
@@ -66,14 +70,17 @@ int arrFindSegments(ARREdgeDetector *detector, ARREdge *edges, int edges_num,
                     segmentInRun = segment;
                 }
             }
-        }
+        }// 找到 support 最多的 线段
+        //print_segment(&segmentInRun, 0); printf("\n");
         
-        // 确定的线的斜率
+        
+        // 根据 supporter 确定的线的斜率
         if (segmentInRun.num >= ARR_EDGES_ONLINE) {
             float u1 = 0;
             float u2 = 50000;
             ARRVec *slope = arrVecAlloc(segmentInRun.start.position.x - segmentInRun.end.position.x,
                                               segmentInRun.start.position.y - segmentInRun.end.position.y);
+            
             ARRVec *orientation = arrVecAlloc(-segmentInRun.start.slope.y, segmentInRun.start.slope.x);
             
             if (abs(slope->x) <= abs(slope->y)) {
@@ -102,6 +109,11 @@ int arrFindSegments(ARREdgeDetector *detector, ARREdge *edges, int edges_num,
                 }
             }
             
+            if ((int)segmentInRun.start.position.x == 47 &&
+                (int)segmentInRun.start.position.y == 28) {
+                int stop = 1;
+            }
+            
             // swap startpoint and endpoint according to orientation of edge
             ARRVec temp;
             temp.x = segmentInRun.end.position.x - segmentInRun.start.position.x;
@@ -109,10 +121,22 @@ int arrFindSegments(ARREdgeDetector *detector, ARREdge *edges, int edges_num,
             if (arrVecInnerProduct(&temp, orientation) < 0.0f) {
                 ARREdge tmp;
                 SWAP(segmentInRun.start, segmentInRun.end, tmp);
+                
+                // 因为交换过 start end，所以重新求下向量
+                temp.x = segmentInRun.end.position.x - segmentInRun.start.position.x;
+                temp.y = segmentInRun.end.position.y - segmentInRun.start.position.y;
+            }
+            
+            if ((int)segmentInRun.start.position.x == 47 &&
+                (int)segmentInRun.start.position.y == 28) {
+                int stop = 1;
             }
             
             arrVecNormalize(&temp);
             segmentInRun.slope = temp;
+            
+            arrVecFree(slope);
+            arrVecFree(orientation);
             
             // 加入满足的 segmentInRun，删除用过的 edge
             
@@ -128,12 +152,16 @@ int arrFindSegments(ARREdgeDetector *detector, ARREdge *edges, int edges_num,
 //						edgels.erase( it );
 //						break;
                         
-                        edges[j] = edges[--edges_num];  // 每次删了都从新开始遍历edges的，所以没事
+                        //edges[j] = edges[--edges_num];  // 每次删了都从新开始遍历edges的，所以没事     // 错！这里不是删除这么简单，还要删后保证有序
+                        memmove(edges + j, edges + j + 1, (edges_num - (j+1))*sizeof(ARREdge)); // void *memmove(void *dest, const void *source, size_t count)
+                        edges_num--;
+                        
                         break;
                     }
                 }
             }
         }
+        
     } while( segmentInRun.num >= ARR_EDGES_ONLINE && edges_num >= ARR_EDGES_ONLINE );   // 一个 segment 至少包含 5个 边缘点
 	
 

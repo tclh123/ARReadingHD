@@ -17,6 +17,7 @@ int arrSegmentAddSupport(ARRSegment *seg, ARREdge *edge)
     // edge：要不要重新alloc一个？ ANS：要，外面的引用直接free掉
     
     ARREdge *edgeNew = arrEdgeAlloc(edge->position.x, edge->position.y);
+    edgeNew->slope = edge->slope;
     
     if (edgeNew == NULL) {
         return -1;

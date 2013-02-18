@@ -9,12 +9,62 @@
 #include <stdio.h>
 #include "ar.h"
 
+////////////////////////////////////////////////////////////////////////
+// DEBUGS
+
+void debug_prints(void *p, int n, void (*print_sub)(void *p, int i))
+{
+    printf("==================================================\n");
+    int i;
+    for (i=0; i<n; i++) {
+        print_sub(p, i);
+        printf("\n");
+    }
+}
+void print_vec(ARRVec *vec)
+{
+    printf("(%.4f,%.4f)", vec->x, vec->y);
+}
+// edge < (1,2), (3,4) >
+void print_edge(void *p, int i)
+{
+    ARREdge *it = (ARREdge*)p + i;
+    printf("edge < ");
+    print_vec(&it->position);
+    printf(", ");
+    print_vec(&it->slope);
+    printf(" >");
+}
+// segment < start=edge < (1,2), (3,4) >, end=edge < (1,2), (3,4) >, slope=(5,6), remove=0, start_corner=0, end_corner=0, supportEdgels[0]=edge < (1,2), (3,4) >, num=0 >
+void print_segment(void *p, int i)
+{
+    ARRSegment *it = (ARRSegment*)p + i;
+    printf("segment < start=");
+    print_edge(&it->start, 0);
+    printf(", end=");
+    print_edge(&it->end, 0);
+    printf(", slope=");
+    print_vec(&it->slope);
+    printf(", remove=");
+    printf("%d", it->remove);
+    printf(", start_corner=");
+    printf("%d", it->start_corner);
+    printf(", end_corner=");
+    printf("%d", it->end_corner);
+    printf(", supportEdgels[0]=");
+    print_edge(it->supportEdgels, 0);
+    printf(", num=");
+    printf("%d", it->num);
+    printf(" >");
+}
+
+
 
 static ARRSegment mergedSegments[ARR_MERGED_SEGMENTS_MAX];
-static int mergedSegments_num; // = 0;
+static int mergedSegments_num;
 
 static ARRMarker markers_static[ARR_MARKERS_MAX];
-static int markers_num;// = 0;
+static int markers_num;
 
 int arrFindMarkers(ARREdgeDetector *detector,
                    ARRMarker **markers, int *num) //output markers, change num
@@ -38,6 +88,8 @@ int arrFindMarkers(ARREdgeDetector *detector,
             {
                 return -1;
             }
+            ////////// debug_prints
+            //debug_prints(edges, edges_num, print_edge);
             
             // 2、若 边缘点 超过5个，找组成的 线段
             ARRSegment *segments = NULL;
@@ -45,6 +97,9 @@ int arrFindMarkers(ARREdgeDetector *detector,
             if (edges_num > 5) {
                 arrFindSegments(detector, edges, edges_num, &segments, &segments_num);  // =0
             }  // 至此 edges 变成残留的
+            
+            ////////// debug_prints
+            //debug_prints(segments, segments_num, print_segment);
             
 #if DEBUG_ENABLE
             // debug functions: 画线段

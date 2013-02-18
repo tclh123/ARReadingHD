@@ -23,17 +23,17 @@ BOOL arrSegmentIsInclude(ARRSegment *seg, ARREdge *edge)
 	// AB ( r2.x - r1.x, r2.y - r1.y )
 	// AC ( cmp.x - r1.x, cmp.y - r1.y )
     
-    double cross = (seg->end.position.x - seg->start.position.x)
+    float cross = (seg->end.position.x - seg->start.position.x)
                     * (edge->position.y - seg->start.position.y);
 	cross -= (seg->end.position.y- seg->start.position.y)
              * ( edge->position.x-seg->start.position.x);
     
-    double d1 = seg->start.position.x - seg->end.position.x;
-    double d2 = seg->start.position.y - seg->end.position.x;
+    float d1 = seg->start.position.x - seg->end.position.x;
+    float d2 = seg->start.position.y - seg->end.position.y;
     
-    double d_length = sqrt(d1*d1 + d2*d2);  // ToDo: vLength(...)
+    float d_length = (float)sqrt(d1*d1 + d2*d2);  // ToDo: vLength(...)
     
-    double distance = cross / d_length;
+    float distance = cross / d_length;
     
-	return fabs(distance) < 0.75f;  //double?
+	return fabs(distance) < 0.75f;
 }

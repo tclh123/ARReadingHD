@@ -91,8 +91,8 @@ void drawLine( int x1, int y1, int x2, int y2, int r, int g, int b, int t ) {
 int main (int argc, char * const argv[]) {
 	int i;
     
-//	BOOL useCamera = TRUE;
-	BOOL useCamera = FALSE;
+	BOOL useCamera = TRUE;
+//	BOOL useCamera = FALSE;
 	BOOL writeVideo = FALSE;
 	
     // create all necessary instances
