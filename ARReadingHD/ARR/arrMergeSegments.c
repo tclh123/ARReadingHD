@@ -98,7 +98,7 @@ int arrMergeSegments(ARREdgeDetector *detector, int max_iterations,
                 break;
             }
         }
-        BOOL merged = FALSE;
+        Bool merged = FALSE;
 		
 		// 根据remove标记，删除所有merge掉的线段
 		for( j=0; j < segments_num; j++ ) {

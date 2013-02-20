@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @class CameraController;
+@class ARRCamera;
 
 @interface ARRViewController : UIViewController {
-    CameraController *camera;
+    ARRCamera *camera;
 }
 
 //@property (nonatomic, retain) CameraController *camera;

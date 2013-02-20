@@ -22,5 +22,6 @@
 - (void)start;
 - (void)stop;
 - (BOOL)isRunning;
+- (void)captureLoop:(CMSampleBufferRef)cameraBuffer;
 
 @end

@@ -14,7 +14,8 @@
 #ifndef  __cplusplus
 #define TRUE 1
 #define FALSE 0
-typedef unsigned char BOOL;
+//typedef unsigned char BOOL;
+typedef unsigned char Bool;
 #endif
 
 /* ARR types */

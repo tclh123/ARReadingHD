@@ -11,7 +11,7 @@
 
 #include "matrix.h"
 
-BOOL arrSegmentIsInclude(ARRSegment *seg, ARREdge *edge)
+Bool arrSegmentIsInclude(ARRSegment *seg, ARREdge *edge)
 {
     if(!arrEdgeIsCompatible(&seg->start, edge)) return FALSE;
     

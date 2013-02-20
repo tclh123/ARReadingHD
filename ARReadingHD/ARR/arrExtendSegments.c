@@ -25,12 +25,12 @@ void arrExtendSegments(ARREdgeDetector *detector, ARRSegment *segments, int num)
     }
 }
 
-BOOL arrExtendLine(ARREdgeDetector *detector, ARRVec *startpoint, const ARRVec *slope, const ARRVec * gradient,
+Bool arrExtendLine(ARREdgeDetector *detector, ARRVec *startpoint, const ARRVec *slope, const ARRVec * gradient,
                    ARRVec * endpoint, const int maxlength )    // output endpoint
 {
     int i;
     const ARRVec *normal = arrVecAlloc(slope->y, -slope->x);
-    BOOL merge = TRUE;
+    Bool merge = TRUE;
     
     // 确保接头位于边缘
     for (i = 0; i<maxlength; i++) {

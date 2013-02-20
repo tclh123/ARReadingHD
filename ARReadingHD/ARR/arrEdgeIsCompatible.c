@@ -10,7 +10,7 @@
 
 #include "matrix.h"
 
-BOOL arrEdgeIsCompatible(ARREdge *edge1, ARREdge *edge2) {
+Bool arrEdgeIsCompatible(ARREdge *edge1, ARREdge *edge2) {
     
 	return arrVecInnerProduct(&edge1->slope, &edge2->slope) > 0.38f; //cosf( 67.5f / 2 pi ) ;
 }

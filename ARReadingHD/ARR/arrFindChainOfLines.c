@@ -20,7 +20,7 @@
  */
 int arrFindChainOfLines(ARREdgeDetector *detector,
                         ARRSegment *startSegment,
-                        BOOL atStartPoint,
+                        Bool atStartPoint,
                         ARRSegment *segments,
                         int *segments_num,
                         ARRSegment *chain,

@@ -17,7 +17,7 @@ static int findEdge(ARREdgeDetector *detecotr,
                     const int left, const int top,
                     int *prev1, int *prev2,
                     ARRByte *offset, const int pitch,
-                    BOOL isHorizontal);
+                    Bool isHorizontal);
 
 
 // 在 Region 中 找边缘像素点
@@ -97,7 +97,7 @@ static int findEdge(ARREdgeDetector *detecotr,
                     const int left, const int top,
                     int *prev1, int *prev2,
                     ARRByte *offset, const int pitch,
-                    BOOL isHorizontal)
+                    Bool isHorizontal)
 {
     int current = arrEdgeKernel(offset, pitch); // arrEdgeKernel 能反应像素点与周围的对比度？类似
     

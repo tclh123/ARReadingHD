@@ -45,7 +45,7 @@ typedef struct {
     ARRImage *image;
     
     // debug line settings
-    BOOL drawLineSegments,
+    Bool drawLineSegments,
         drawPartialMergedLineSegments,
         drawMergedLineSegments,
         drawExtendedLineSegments,
@@ -59,15 +59,15 @@ typedef struct {
 // TODO: 把画线的抽离出来
 // TODO: Edeg Detector's functions
 void arrSetDebugLine(ARREdgeDetector *detector,
-                     BOOL drawLineSegments,
-                     BOOL drawPartialMergedLineSegments,
-                     BOOL drawMergedLineSegments,
-                     BOOL drawExtendedLineSegments,
-                     BOOL drawCorners,
-                     BOOL drawMarkers,
-                     BOOL drawSectors,
-                     BOOL drawSectorGrids,
-                     BOOL drawEdges);
+                     Bool drawLineSegments,
+                     Bool drawPartialMergedLineSegments,
+                     Bool drawMergedLineSegments,
+                     Bool drawExtendedLineSegments,
+                     Bool drawCorners,
+                     Bool drawMarkers,
+                     Bool drawSectors,
+                     Bool drawSectorGrids,
+                     Bool drawEdges);
 
 // Edge Kernel?
 int arrEdgeKernel(ARRByte *offset, const int pitch);
@@ -88,7 +88,7 @@ int arrFindSegments(ARREdgeDetector *detector, ARREdge *edges, int edges_num,
 // 合并（连接）线段
 int arrMergeSegments(ARREdgeDetector *detector, int max_iterations,
                      ARRSegment *segments, int *num);  // change segments, num  // 调用 arrExtendLine
-BOOL arrExtendLine(ARREdgeDetector *detector, ARRVec *startpoint, const ARRVec *slope, const ARRVec * gradient,
+Bool arrExtendLine(ARREdgeDetector *detector, ARRVec *startpoint, const ARRVec *slope, const ARRVec * gradient,
                           ARRVec *endpoint, const int maxlength );    // output endpoint
 // 扩展（延伸）线段
 void arrExtendSegments(ARREdgeDetector *detector, ARRSegment *segments, int num);    // change segments //调用 arrExtendLine
@@ -99,7 +99,7 @@ int arrFindLinesWithCorners(ARREdgeDetector *detector, ARRSegment *segments, int
 // 找链（矩形4条边）
 int arrFindChainOfLines(ARREdgeDetector *detector,
                         ARRSegment *startSegment,
-                        BOOL atStartPoint,
+                        Bool atStartPoint,
                         ARRSegment *segments,
                         int *segments_num,
                         ARRSegment *chain,

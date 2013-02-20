@@ -37,7 +37,7 @@ typedef struct {
 
 ARREdge* arrEdgeAlloc(float x, float y);
 int arrEdgeFree(ARREdge*);
-BOOL arrEdgeIsCompatible(ARREdge *edge1, ARREdge *edge2);
+Bool arrEdgeIsCompatible(ARREdge *edge1, ARREdge *edge2);
 
 /* linesegment
     线段
@@ -45,7 +45,7 @@ BOOL arrEdgeIsCompatible(ARREdge *edge1, ARREdge *edge2);
 typedef struct {
     ARREdge start, end;
     ARRVec slope;
-    BOOL remove, start_corner, end_corner;
+    Bool remove, start_corner, end_corner;
 	ARREdge supportEdgels[ARR_EACH_SEGMENT_EDGES_MAX];     // 当 Alloc Segment?
     int num;    // supportEdgels' num
 } ARRSegment;
@@ -57,10 +57,10 @@ int arrSegmentFree(ARRSegment*);
 
 int arrSegmentAddSupport(ARRSegment *seg, ARREdge *edge);
 
-BOOL arrSegmentIsInclude(ARRSegment *seg, ARREdge *edge);
-BOOL arrSegmentIsCompatible(ARRSegment *seg, ARRSegment *seg2);
+Bool arrSegmentIsInclude(ARRSegment *seg, ARREdge *edge);
+Bool arrSegmentIsCompatible(ARRSegment *seg, ARRSegment *seg2);
 ARRVec arrSegmentIntersect(ARRSegment *seg, ARRSegment *seg2);
-BOOL arrSegmentIsEquel(ARRSegment *seg, ARRSegment *seg2);
+Bool arrSegmentIsEquel(ARRSegment *seg, ARRSegment *seg2);
 
 
 

@@ -9,6 +9,7 @@
 #import "ARRViewController.h"
 
 #import "CameraController.h"
+#import "ARRCamera.h"
 
 @interface ARRViewController ()
 
@@ -29,7 +30,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    camera = [[CameraController alloc] initWithFrameRect:self.view.bounds];
+    camera = [[ARRCamera alloc] initWithFrameRect:self.view.bounds];
     [self.view.layer addSublayer:camera.previewLayer];
     [camera start];
 }

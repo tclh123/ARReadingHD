@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include "matrix.h"
 
-BOOL arrSegmentIsEquel(ARRSegment *seg, ARRSegment *seg2)
+Bool arrSegmentIsEquel(ARRSegment *seg, ARRSegment *seg2)
 {
     
     return (seg->start.position.x == seg2->start.position.x &&

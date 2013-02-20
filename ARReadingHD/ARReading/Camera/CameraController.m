@@ -19,7 +19,7 @@
 	output.alwaysDiscardsLateVideoFrames = YES;
     
     // 對輸出端的queue做設定
-	[output setSampleBufferDelegate:self queue:dispatch_get_main_queue()];   // 异步？
+	[output setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
     
 	output.videoSettings = [NSDictionary
                             dictionaryWithObject: [NSNumber numberWithInt:kCVPixelFormatType_32BGRA]
@@ -27,8 +27,9 @@
     
 	// Session presets low, medium, high, 640x480...
     session = [[AVCaptureSession alloc] init];
-	//session.sessionPreset = AVCaptureSessionPreset640x480;
-    session.sessionPreset = AVCaptureSessionPreset1280x720;
+//    session.sessionPreset = AVCaptureSessionPreset640x480;
+//    session.sessionPreset = AVCaptureSessionPreset1280x720;
+    session.sessionPreset = AVCaptureSessionPreset640x480;
     
     if (!input) {
         //
@@ -37,14 +38,14 @@
 	[session addOutput:output];
     
 	self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:session];
-	self.previewLayer.frame = frameRect;
+//	self.previewLayer.frame = frameRect;
+    self.previewLayer.frame = CGRectMake(0, 0, 320, 240);
     
-    [self.previewLayer setPosition:CGPointMake(CGRectGetMidX(frameRect), CGRectGetMidY(frameRect))];
+    //[self.previewLayer setPosition:CGPointMake(CGRectGetMidX(frameRect), CGRectGetMidY(frameRect))];  //default
     
-	//previewLayer.videoGravity = AVLayerVideoGravityResizeAspect;   // default
-	//previewLayer.zPosition = -5;
+//	self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;   // 保证 横纵比，剪切使全屏
+	self.previewLayer.zPosition = -5;   //为了 glView在前面？
 
-	//[self.view.layer addSublayer:self.previewLayer];
     return self;
 }
 
@@ -62,6 +63,10 @@
     return [session isRunning];
 }
 
+- (void)captureLoop:(CMSampleBufferRef)cameraBuffer {
+
+}
+
 #pragma mark -
 #pragma mark AVCaptureVideoDataOutputSampleBufferDelegate
 
@@ -73,6 +78,7 @@
 //		[self copyToValueBufferFromPixelBuffer:imageBuffer];        // 这里
 //		_toc();
 //		[self updatePreviewView];
+        [self captureLoop:sampleBuffer];
 	}
 }
 
