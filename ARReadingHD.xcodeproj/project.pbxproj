@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32062CC216D4D52000B37CD3 /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32062CC116D4D52000B37CD3 /* CameraController.m */; };
+		32062CC416D4D5C800B37CD3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32062CC316D4D5C800B37CD3 /* AVFoundation.framework */; };
+		32062CC616D4D5D200B37CD3 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32062CC516D4D5D200B37CD3 /* CoreVideo.framework */; };
+		32062CC816D4D5D800B37CD3 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32062CC716D4D5D800B37CD3 /* CoreMedia.framework */; };
+		32062CCA16D4E1DB00B37CD3 /* arrSegmentInit.c in Sources */ = {isa = PBXBuildFile; fileRef = 32062CC916D4E1DB00B37CD3 /* arrSegmentInit.c */; };
 		32F7C6DE16CBF7D6009A7DF6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F7C6DD16CBF7D6009A7DF6 /* UIKit.framework */; };
 		32F7C6E016CBF7D6009A7DF6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F7C6DF16CBF7D6009A7DF6 /* Foundation.framework */; };
 		32F7C6E216CBF7D6009A7DF6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F7C6E116CBF7D6009A7DF6 /* CoreGraphics.framework */; };
@@ -45,6 +50,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		32062CC016D4D52000B37CD3 /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraController.h; sourceTree = "<group>"; };
+		32062CC116D4D52000B37CD3 /* CameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraController.m; sourceTree = "<group>"; };
+		32062CC316D4D5C800B37CD3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		32062CC516D4D5D200B37CD3 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		32062CC716D4D5D800B37CD3 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		32062CC916D4E1DB00B37CD3 /* arrSegmentInit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrSegmentInit.c; sourceTree = "<group>"; };
 		32F7C6D916CBF7D6009A7DF6 /* ARReadingHD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARReadingHD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F7C6DD16CBF7D6009A7DF6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		32F7C6DF16CBF7D6009A7DF6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -97,6 +108,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32062CC816D4D5D800B37CD3 /* CoreMedia.framework in Frameworks */,
+				32062CC616D4D5D200B37CD3 /* CoreVideo.framework in Frameworks */,
+				32062CC416D4D5C800B37CD3 /* AVFoundation.framework in Frameworks */,
 				32F7C6DE16CBF7D6009A7DF6 /* UIKit.framework in Frameworks */,
 				32F7C6E016CBF7D6009A7DF6 /* Foundation.framework in Frameworks */,
 				32F7C6E216CBF7D6009A7DF6 /* CoreGraphics.framework in Frameworks */,
@@ -106,6 +120,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32062CBD16D4D38100B37CD3 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				32062CBF16D4D45A00B37CD3 /* Camera */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		32062CBF16D4D45A00B37CD3 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				32062CC016D4D52000B37CD3 /* CameraController.h */,
+				32062CC116D4D52000B37CD3 /* CameraController.m */,
+			);
+			name = Camera;
+			path = ARReading/Camera;
+			sourceTree = "<group>";
+		};
 		32F7C6CE16CBF7D5009A7DF6 = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +159,9 @@
 		32F7C6DC16CBF7D6009A7DF6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32062CC716D4D5D800B37CD3 /* CoreMedia.framework */,
+				32062CC516D4D5D200B37CD3 /* CoreVideo.framework */,
+				32062CC316D4D5C800B37CD3 /* AVFoundation.framework */,
 				32F7C6DD16CBF7D6009A7DF6 /* UIKit.framework */,
 				32F7C6DF16CBF7D6009A7DF6 /* Foundation.framework */,
 				32F7C6E116CBF7D6009A7DF6 /* CoreGraphics.framework */,
@@ -137,6 +172,7 @@
 		32F7C6E316CBF7D6009A7DF6 /* ARReadingHD */ = {
 			isa = PBXGroup;
 			children = (
+				32062CBD16D4D38100B37CD3 /* Classes */,
 				32F7C6EC16CBF7D6009A7DF6 /* ARRAppDelegate.h */,
 				32F7C6ED16CBF7D6009A7DF6 /* ARRAppDelegate.m */,
 				32F7C6E416CBF7D6009A7DF6 /* Supporting Files */,
@@ -161,6 +197,7 @@
 		32F7C6FD16CBFB21009A7DF6 /* ARR */ = {
 			isa = PBXGroup;
 			children = (
+				32062CC916D4E1DB00B37CD3 /* arrSegmentInit.c */,
 				32F7C6FE16CBFB21009A7DF6 /* include */,
 				32F7C71C16CC01A3009A7DF6 /* vAlloc.c */,
 				32F7C71E16CC03CD009A7DF6 /* vFree.c */,
@@ -300,6 +337,8 @@
 				32F7C77416D00D6D009A7DF6 /* arrFindLinesWithCorners.c in Sources */,
 				32F7C77616D01AF2009A7DF6 /* arrFindChainOfLines.c in Sources */,
 				32F7C77816D02979009A7DF6 /* arrMarkerCopyChain.c in Sources */,
+				32062CC216D4D52000B37CD3 /* CameraController.m in Sources */,
+				32062CCA16D4E1DB00B37CD3 /* arrSegmentInit.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

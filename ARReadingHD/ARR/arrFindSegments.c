@@ -109,11 +109,6 @@ int arrFindSegments(ARREdgeDetector *detector, ARREdge *edges, int edges_num,
                 }
             }
             
-            if ((int)segmentInRun.start.position.x == 47 &&
-                (int)segmentInRun.start.position.y == 28) {
-                int stop = 1;
-            }
-            
             // swap startpoint and endpoint according to orientation of edge
             ARRVec temp;
             temp.x = segmentInRun.end.position.x - segmentInRun.start.position.x;
@@ -125,11 +120,6 @@ int arrFindSegments(ARREdgeDetector *detector, ARREdge *edges, int edges_num,
                 // 因为交换过 start end，所以重新求下向量
                 temp.x = segmentInRun.end.position.x - segmentInRun.start.position.x;
                 temp.y = segmentInRun.end.position.y - segmentInRun.start.position.y;
-            }
-            
-            if ((int)segmentInRun.start.position.x == 47 &&
-                (int)segmentInRun.start.position.y == 28) {
-                int stop = 1;
             }
             
             arrVecNormalize(&temp);
