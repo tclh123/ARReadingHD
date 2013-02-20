@@ -10,7 +10,7 @@
 
 @implementation CameraController
 
-- (void)initCameraWithFrameRect:(CGRect)frameRect {
+- (id)initWithFrameRect:(CGRect)frameRect {
     // input
 	AVCaptureDeviceInput* input = [AVCaptureDeviceInput deviceInputWithDevice:[AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo] error:nil]; // 选了默认的 video device
     
@@ -27,7 +27,8 @@
     
 	// Session presets low, medium, high, 640x480...
     session = [[AVCaptureSession alloc] init];
-	session.sessionPreset = AVCaptureSessionPreset640x480;
+	//session.sessionPreset = AVCaptureSessionPreset640x480;
+    session.sessionPreset = AVCaptureSessionPreset1280x720;
     
     if (!input) {
         //
@@ -35,13 +36,16 @@
 	[session addInput:input];
 	[session addOutput:output];
     
-	previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:session];
-	previewLayer.frame = frameRect;
-
+	self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:session];
+	self.previewLayer.frame = frameRect;
+    
+    [self.previewLayer setPosition:CGPointMake(CGRectGetMidX(frameRect), CGRectGetMidY(frameRect))];
+    
 	//previewLayer.videoGravity = AVLayerVideoGravityResizeAspect;   // default
 	//previewLayer.zPosition = -5;
 
 	//[self.view.layer addSublayer:self.previewLayer];
+    return self;
 }
 
 - (void)start {

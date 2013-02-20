@@ -10,6 +10,6 @@
 
 @interface ARRAppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UIWindow *window;     // 整个App 唯一的 window
 
 @end

@@ -12,6 +12,8 @@
 		32062CC616D4D5D200B37CD3 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32062CC516D4D5D200B37CD3 /* CoreVideo.framework */; };
 		32062CC816D4D5D800B37CD3 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32062CC716D4D5D800B37CD3 /* CoreMedia.framework */; };
 		32062CCA16D4E1DB00B37CD3 /* arrSegmentInit.c in Sources */ = {isa = PBXBuildFile; fileRef = 32062CC916D4E1DB00B37CD3 /* arrSegmentInit.c */; };
+		32062CCC16D4E30B00B37CD3 /* ARReadingHD.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32062CCB16D4E30B00B37CD3 /* ARReadingHD.storyboard */; };
+		32062CD016D4E50800B37CD3 /* ARRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32062CCF16D4E50800B37CD3 /* ARRViewController.m */; };
 		32F7C6DE16CBF7D6009A7DF6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F7C6DD16CBF7D6009A7DF6 /* UIKit.framework */; };
 		32F7C6E016CBF7D6009A7DF6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F7C6DF16CBF7D6009A7DF6 /* Foundation.framework */; };
 		32F7C6E216CBF7D6009A7DF6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F7C6E116CBF7D6009A7DF6 /* CoreGraphics.framework */; };
@@ -56,6 +58,9 @@
 		32062CC516D4D5D200B37CD3 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		32062CC716D4D5D800B37CD3 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		32062CC916D4E1DB00B37CD3 /* arrSegmentInit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrSegmentInit.c; sourceTree = "<group>"; };
+		32062CCB16D4E30B00B37CD3 /* ARReadingHD.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ARReadingHD.storyboard; sourceTree = "<group>"; };
+		32062CCE16D4E50800B37CD3 /* ARRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRViewController.h; sourceTree = "<group>"; };
+		32062CCF16D4E50800B37CD3 /* ARRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARRViewController.m; sourceTree = "<group>"; };
 		32F7C6D916CBF7D6009A7DF6 /* ARReadingHD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARReadingHD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F7C6DD16CBF7D6009A7DF6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		32F7C6DF16CBF7D6009A7DF6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -138,6 +143,16 @@
 			path = ARReading/Camera;
 			sourceTree = "<group>";
 		};
+		32062CCD16D4E49800B37CD3 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				32062CCE16D4E50800B37CD3 /* ARRViewController.h */,
+				32062CCF16D4E50800B37CD3 /* ARRViewController.m */,
+			);
+			name = ViewControllers;
+			path = ARReading/ViewControllers;
+			sourceTree = "<group>";
+		};
 		32F7C6CE16CBF7D5009A7DF6 = {
 			isa = PBXGroup;
 			children = (
@@ -172,10 +187,12 @@
 		32F7C6E316CBF7D6009A7DF6 /* ARReadingHD */ = {
 			isa = PBXGroup;
 			children = (
+				32062CCD16D4E49800B37CD3 /* ViewControllers */,
 				32062CBD16D4D38100B37CD3 /* Classes */,
 				32F7C6EC16CBF7D6009A7DF6 /* ARRAppDelegate.h */,
 				32F7C6ED16CBF7D6009A7DF6 /* ARRAppDelegate.m */,
 				32F7C6E416CBF7D6009A7DF6 /* Supporting Files */,
+				32062CCB16D4E30B00B37CD3 /* ARReadingHD.storyboard */,
 			);
 			path = ARReadingHD;
 			sourceTree = "<group>";
@@ -253,6 +270,7 @@
 				32F7C6D516CBF7D6009A7DF6 /* Sources */,
 				32F7C6D616CBF7D6009A7DF6 /* Frameworks */,
 				32F7C6D716CBF7D6009A7DF6 /* Resources */,
+				32062CD916D4F8FC00B37CD3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -299,10 +317,27 @@
 				32F7C6F016CBF7D6009A7DF6 /* Default.png in Resources */,
 				32F7C6F216CBF7D6009A7DF6 /* Default@2x.png in Resources */,
 				32F7C6F416CBF7D6009A7DF6 /* Default-568h@2x.png in Resources */,
+				32062CCC16D4E30B00B37CD3 /* ARReadingHD.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		32062CD916D4F8FC00B37CD3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ] || [ \"${PLATFORM_NAME}\" == \"ipados\" ]; then\n/Applications/Xcode.app/Contents/Developer/iphoneentitlements/gen_entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		32F7C6D516CBF7D6009A7DF6 /* Sources */ = {
@@ -339,6 +374,7 @@
 				32F7C77816D02979009A7DF6 /* arrMarkerCopyChain.c in Sources */,
 				32062CC216D4D52000B37CD3 /* CameraController.m in Sources */,
 				32062CCA16D4E1DB00B37CD3 /* arrSegmentInit.c in Sources */,
+				32062CD016D4E50800B37CD3 /* ARRViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

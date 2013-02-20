@@ -12,13 +12,13 @@
 
 @interface CameraController : NSObject<AVCaptureVideoDataOutputSampleBufferDelegate> {
     AVCaptureSession              *session;
-    AVCaptureVideoPreviewLayer    *previewLayer;
+    //AVCaptureVideoPreviewLayer    *previewLayer;
 }
 
 //@property (nonatomic, retain) AVCaptureSession              *session;
-//@property (nonatomic, retain) AVCaptureVideoPreviewLayer    *previewLayer;
+@property (nonatomic, retain) AVCaptureVideoPreviewLayer    *previewLayer;
 
-- (void)initCameraWithFrameRect:(CGRect)frameRect;
+- (id)initWithFrameRect:(CGRect)frameRect;
 - (void)start;
 - (void)stop;
 - (BOOL)isRunning;
