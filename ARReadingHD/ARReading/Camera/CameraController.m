@@ -38,8 +38,8 @@
 	[session addOutput:output];
     
 	self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:session];
-//	self.previewLayer.frame = frameRect;
-    self.previewLayer.frame = CGRectMake(0, 0, 320, 240);
+	self.previewLayer.frame = frameRect;
+//    self.previewLayer.frame = CGRectMake(0, 0, 320, 240);
     
     //[self.previewLayer setPosition:CGPointMake(CGRectGetMidX(frameRect), CGRectGetMidY(frameRect))];  //default
     

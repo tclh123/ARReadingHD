@@ -29,7 +29,7 @@ typedef struct {
 ARRImage* arrImageAlloc(int width, int height);
 // TODO: free或setData？
 ARRByte arrImageGetPixel(ARRImage *image, int x, int y, int channel);
-double arrImageGetPixelColor(ARRImage *image, int x, int y, int channel);
+float arrImageGetPixelColor(ARRImage *image, int x, int y, int channel);
 
 /* ARR Marker */
 typedef struct {

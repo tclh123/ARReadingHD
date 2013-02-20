@@ -12,19 +12,19 @@
 
 ARRVec arrSegmentIntersect(ARRSegment *seg, ARRSegment *seg2)
 {
-	double denom = ( (seg2->end.position.y - seg2->start.position.y)
+	float denom = ( (seg2->end.position.y - seg2->start.position.y)
                     * (seg->end.position.x - seg->start.position.x) )
                     -
                     ( (seg2->end.position.x - seg2->start.position.x)
                      * (seg->end.position.y - seg->start.position.y) );
 	
-    double nume_a = ( (seg2->end.position.x - seg2->start.position.x)
+    float nume_a = ( (seg2->end.position.x - seg2->start.position.x)
                      * (seg->start.position.y - seg2->start.position.y) )
                     -
                     ( (seg2->end.position.y - seg2->start.position.y)
                      * (seg->start.position.x - seg2->start.position.x));
     
-	double ua = nume_a / denom;
+	float ua = nume_a / denom;
 	
 	float x = seg->start.position.x + ua * (seg->end.position.x - seg->start.position.x);
 	float y = seg->start.position.y + ua * (seg->end.position.y - seg->start.position.y);

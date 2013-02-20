@@ -28,9 +28,15 @@ ARRVec arrEdgeGradientIntensity(ARREdgeDetector *detector, int x, int y)
     gy -= arrImageGetPixelColor(detector->image, x+1, y+1, 0);
     
     // TODO: Vector2f.get_normalized() ?
-    double length = sqrt((double)gx*gx + (double)gy*gy);
+//    double length = sqrt((double)gx*gx + (double)gy*gy);
+//    ARRVec vec;
+//    vec.x = (double)gy / length;
+//    vec.y = (double)gx / length;
+    
     ARRVec vec;
-    vec.x = (double)gy / length;
-    vec.y = (double)gx / length;
+    vec.x = gy;
+    vec.y = gx;
+    arrVecNormalize(&vec);
+    
     return vec;
 }
