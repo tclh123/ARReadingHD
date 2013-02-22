@@ -33,6 +33,8 @@
     camera = [[ARRCamera alloc] initWithFrameRect:self.view.bounds];
     [self.view.layer addSublayer:camera.previewLayer];
     [camera start];
+    
+    [self.view addSubview:camera.glView];
 }
 
 - (void)didReceiveMemoryWarning

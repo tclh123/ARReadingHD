@@ -7,6 +7,7 @@
 //
 
 #import "CameraController.h"
+#import "ARRGLView.h"
 
 #include "ar.h"
 
@@ -14,7 +15,11 @@
     unsigned char *tempBuffer;  // 32
     unsigned char *colorBuffer; // 24
     ARREdgeDetector *detector;
+    
 }
+
+// GL
+@property (nonatomic, retain) ARRGLView *glView;
 
 @property (nonatomic, assign) int width;
 @property (nonatomic, assign) int height;

@@ -70,6 +70,9 @@ const int DefaultHeight = 480;
     self.width = DefaultWidth;
     self.height = DefaultHeight;
     
+    // GL init!
+    self.glView = [[ARRGLView alloc] initWithFrame:frameRect];
+    
     return self;
 }
 
@@ -100,6 +103,8 @@ const int DefaultHeight = 480;
     
     arrFindMarkers(detector, &markers, &markers_num);
     DD(markers_num);
+    
+    [self.glView render];
 }
 
 @end
