@@ -16,7 +16,7 @@ typedef struct {
 } Vertex;
 
 // 4个点
-const Vertex Vertices[] = {
+Vertex Vertices[] = {
     {{1, -1, 0}, {1, 0, 0, 1}},     // r
     {{1, 1, 0}, {0, 1, 0, 1}},      // g
     {{-1, 1, 0}, {0, 0, 1, 1}},     // b
@@ -25,7 +25,7 @@ const Vertex Vertices[] = {
     // OpenGL 的 z轴是垂直屏幕向外的，所以 z坐标为负数
 };
 // 三角形顶点的 数组 , 存顶点index
-const GLubyte Indices[] = {
+GLubyte Indices[] = {
     0, 1, 2,    // 右上
     2, 3, 0     // 左下
 };
@@ -72,13 +72,33 @@ const GLubyte Indices[] = {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        
         [self setupVertexBufferObjects];    // VBO
         
         [self compileShaders];
         
-        [self render];
+//        [self render];
     }
     return self;
+}
+
+// 清理屏幕，并渲染
+- (void)render:(ARRMarker*)markers {
+    
+    // TODO
+    
+//    float h =4.0f* self.frame.size.height / self.frame.size.width;
+//    
+//    // 这四点只是2d坐标，所以暂时统一z=0
+//    ARRMarker *m = &markers[0];
+//    Vertex vertices[] = {
+//        {{m->c1.x/self.frame.size.width * 4.0f - 2.0f, m->c1.y/self.frame.size.height * h - h/2, 0}, {1, 0, 0, 1}},     // r
+//        {{m->c2.x/self.frame.size.width * 4.0f - 2.0f, m->c2.y/self.frame.size.height * h - h/2, 0}, {0, 1, 0, 1}},      // g
+//        {{m->c3.x/self.frame.size.width * 4.0f - 2.0f, m->c3.y/self.frame.size.height * h - h/2, 0}, {0, 0, 1, 1}},     // b
+//        {{m->c4.x/self.frame.size.width * 4.0f - 2.0f, m->c4.y/self.frame.size.height * h - h/2, 0}, {0, 0, 0, 1}}     // black
+//    };
+    
+    [self render];
 }
 
 // 清理屏幕，并渲染
@@ -120,13 +140,13 @@ const GLubyte Indices[] = {
 }
 
 // VBO: vertex buffer object
-- (void)setupVertexBufferObjects {
+- (void)setupVertexBufferObjects {     //防止指针退化
     
     // 顶点buffer
     GLuint vertexBuffer;
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);    // GL_STATIC_DRAW 不能被更新
     
     // 顶点索引buffer
     GLuint indexBuffer;
@@ -163,12 +183,13 @@ const GLubyte Indices[] = {
     // 执行program
     glUseProgram(programHandle);
     
-    // 保留变量指针
+    // 获得变量指针，启用属性
     _positionSlot = glGetAttribLocation(programHandle, "Position");
     _colorSlot = glGetAttribLocation(programHandle, "SourceColor");
     glEnableVertexAttribArray(_positionSlot);
     glEnableVertexAttribArray(_colorSlot);
     
+    // 维护 Uniform 指针
     _projectionUniform = glGetUniformLocation(programHandle, "Projection");
     _modelViewUniform = glGetUniformLocation(programHandle, "Modelview");
 }

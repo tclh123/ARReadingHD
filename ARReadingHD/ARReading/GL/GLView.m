@@ -135,9 +135,9 @@
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _depthRenderBuffer);
 }
 
-// 清理屏幕，并渲染
-- (void)render {
-    // dummy
-}
+//// 清理屏幕，并渲染
+//- (void)render {
+//    // dummy
+//}
 
 @end

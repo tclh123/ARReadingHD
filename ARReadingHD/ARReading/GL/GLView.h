@@ -20,6 +20,6 @@
 
 - (GLuint)compileShaderWithSourceCode:(NSString*)shaderSourceCode withType:(GLenum)shaderType;
 - (GLuint)compileShaderWithFile:(NSString*)shaderFileName withType:(GLenum)shaderType;
-- (void)render;
+//- (void)render;
 
 @end

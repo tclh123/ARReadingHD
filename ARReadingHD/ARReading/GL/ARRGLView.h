@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "GLView.h"
 
+#include "ar.h"
+
 @interface ARRGLView : GLView {
     // vertex_shader 传入变量 的指针
     GLuint _positionSlot;
@@ -21,5 +23,8 @@
     // internal
 //    float _currentRotation; // 维护旋转度数
 }
+
+- (void)render;
+- (void)render:(ARRMarker*)markers;
 
 @end

@@ -105,6 +105,7 @@ const int DefaultHeight = 480;
     DD(markers_num);
     
     [self.glView render];
+//    [self.glView render:markers];
 }
 
 @end
