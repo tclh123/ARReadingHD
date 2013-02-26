@@ -25,6 +25,7 @@
 		322FE13A16D7997400FA4CF9 /* CC3GLMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 322FE13216D7997300FA4CF9 /* CC3GLMatrix.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		322FE13B16D7997400FA4CF9 /* CC3Kazmath.c in Sources */ = {isa = PBXBuildFile; fileRef = 322FE13316D7997300FA4CF9 /* CC3Kazmath.c */; };
 		322FE13C16D7997400FA4CF9 /* CC3Math.m in Sources */ = {isa = PBXBuildFile; fileRef = 322FE13716D7997300FA4CF9 /* CC3Math.m */; };
+		32C04D8116DD11D00083FCA3 /* arrMarkerGetTrans.c in Sources */ = {isa = PBXBuildFile; fileRef = 32C04D8016DD11D00083FCA3 /* arrMarkerGetTrans.c */; };
 		32F7C6DE16CBF7D6009A7DF6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F7C6DD16CBF7D6009A7DF6 /* UIKit.framework */; };
 		32F7C6E016CBF7D6009A7DF6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F7C6DF16CBF7D6009A7DF6 /* Foundation.framework */; };
 		32F7C6E216CBF7D6009A7DF6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F7C6E116CBF7D6009A7DF6 /* CoreGraphics.framework */; };
@@ -92,6 +93,7 @@
 		322FE13616D7997300FA4CF9 /* CC3Math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CC3Math.h; sourceTree = "<group>"; };
 		322FE13716D7997300FA4CF9 /* CC3Math.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CC3Math.m; sourceTree = "<group>"; };
 		322FE13816D7997300FA4CF9 /* ccTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccTypes.h; sourceTree = "<group>"; };
+		32C04D8016DD11D00083FCA3 /* arrMarkerGetTrans.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = arrMarkerGetTrans.c; sourceTree = "<group>"; };
 		32F7C6D916CBF7D6009A7DF6 /* ARReadingHD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARReadingHD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F7C6DD16CBF7D6009A7DF6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		32F7C6DF16CBF7D6009A7DF6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -322,6 +324,7 @@
 				32F7C77316D00D6C009A7DF6 /* arrFindLinesWithCorners.c */,
 				32F7C77516D01AF2009A7DF6 /* arrFindChainOfLines.c */,
 				32F7C77716D02979009A7DF6 /* arrMarkerCopyChain.c */,
+				32C04D8016DD11D00083FCA3 /* arrMarkerGetTrans.c */,
 			);
 			name = ARR;
 			path = ARReadingHD/ARR;
@@ -464,6 +467,7 @@
 				322FE13A16D7997400FA4CF9 /* CC3GLMatrix.m in Sources */,
 				322FE13B16D7997400FA4CF9 /* CC3Kazmath.c in Sources */,
 				322FE13C16D7997400FA4CF9 /* CC3Math.m in Sources */,
+				32C04D8116DD11D00083FCA3 /* arrMarkerGetTrans.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

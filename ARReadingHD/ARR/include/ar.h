@@ -39,6 +39,7 @@ typedef struct {
 } ARRMarker;
 void arrMarkerReconstruct(ARRMarker *marker);
 void arrMarkerCopyChain(ARRMarker *marker, ARRSegment *chain, int num);
+void arrMarkerGetTrans(ARRMarker *marker, float scale,float bufferWidth, float bufferHeight, float focalX, float focalY, float matrix[4][4], float matrixGL[16]);
 
 /* Edeg Detector */
 typedef struct {

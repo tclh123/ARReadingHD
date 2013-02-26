@@ -15,11 +15,16 @@ typedef struct {
 } Vertex;
 
 // 4个点
-Vertex Vertices[] = {
-    {{1, -1, 0}, {1, 0, 0, 1}},     // r
-    {{1, 1, 0}, {0, 1, 0, 1}},      // g
-    {{-1, 1, 0}, {0, 0, 1, 1}},     // b
-    {{-1, -1, 0}, {0, 0, 0, 1}}     // black
+Vertex Vertices[] = {   // z = -1 为地面？
+//    {{0, 0, -1}, {1, 0, 0, 1}},     // r                  // TODO: 为什么下面那个会抖，上面这个以前貌似不会？？
+//    {{1, 0, -1}, {0, 1, 0, 1}},      // g
+//    {{1, 1, -1}, {0, 0, 1, 1}},     // b
+//    {{0, 1, -1}, {0, 0, 0, 1}}     // black
+    
+    {{-1, -1, 0}, {1, 0, 0, 1}},     // r
+    {{1, -1, 0}, {0, 1, 0, 1}},      // g
+    {{1, 1, 0}, {0, 0, 1, 1}},     // b
+    {{-1, 1, 0}, {0, 0, 0, 1}}     // black
 
     // OpenGL 的 z轴是垂直屏幕向外的，所以 z坐标为负数
 };
@@ -85,11 +90,11 @@ GLubyte Indices[] = {
     _focalX = focalX;
     _focalY = focalY;
     
-    _projection = [CC3GLMatrix matrix];
-    float left = -0.5 * self.cameraFrameSize.height / focalY;
-	float right = 0.5 * self.cameraFrameSize.height / focalY;
-	float bottom = -0.5 * self.cameraFrameSize.width / focalX;
-	float top = 0.5 * self.cameraFrameSize.width / focalX;
+    _projection = [CC3GLMatrix matrix];     // WHY:用 CoreAR的 顺序不行。。？
+    float left = -0.5 * self.cameraFrameSize.width / focalY;
+	float right = 0.5 * self.cameraFrameSize.width / focalY;
+	float bottom = -0.5 * self.cameraFrameSize.height / focalX;
+	float top = 0.5 * self.cameraFrameSize.height / focalX;
     [_projection populateFromFrustumLeft:left andRight:right andBottom:bottom andTop:top andNear:1 andFar:1000];
     
     // glViewport 设置UIView中用于渲染的部分
@@ -97,22 +102,33 @@ GLubyte Indices[] = {
 }
 
 // 清理屏幕，并渲染
-- (void)render:(ARRMarker*)markers {
+- (void)render:(ARRMarker*)markers num:(int)markers_num {
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glUniformMatrix4fv(_projectionUniform, 1, GL_FALSE, _projection.glMatrix);
     
-    // TODO
+    // 配置 shader属性 指针
+    glVertexAttribPointer(_positionSlot, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+    glVertexAttribPointer(_colorSlot, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*) (sizeof(float) *3));
     
-//    float h =4.0f* self.frame.size.height / self.frame.size.width;
-//    
-//    // 这四点只是2d坐标，所以暂时统一z=0
-//    ARRMarker *m = &markers[0];
-//    Vertex vertices[] = {
-//        {{m->c1.x/self.frame.size.width * 4.0f - 2.0f, m->c1.y/self.frame.size.height * h - h/2, 0}, {1, 0, 0, 1}},     // r
-//        {{m->c2.x/self.frame.size.width * 4.0f - 2.0f, m->c2.y/self.frame.size.height * h - h/2, 0}, {0, 1, 0, 1}},      // g
-//        {{m->c3.x/self.frame.size.width * 4.0f - 2.0f, m->c3.y/self.frame.size.height * h - h/2, 0}, {0, 0, 1, 1}},     // b
-//        {{m->c4.x/self.frame.size.width * 4.0f - 2.0f, m->c4.y/self.frame.size.height * h - h/2, 0}, {0, 0, 0, 1}}     // black
-//    };
+    float matrix[4][4], matrixGL[16];
+    for (int i=0; i<markers_num; i++) {
+        DD(markers[i].num) DP(markers[i].c1) DP(markers[i].c2) DP(markers[i].c3) DP(markers[i].c4)
+        
+        arrMarkerGetTrans(&markers[i], 2.0f, self.cameraFrameSize.width, self.cameraFrameSize.height, _focalX, _focalY,
+                          matrix, matrixGL);
+        
+        // model-view matrix
+//        CC3GLMatrix *modelView = [CC3GLMatrix matrix];
+//        [modelView populateFromTranslation:CC3VectorMake(0, 0, -7)];    // 平移 (x,y,z)
+//        glUniformMatrix4fv(_modelViewUniform, 1, 0, modelView.glMatrix);
+        
+        glUniformMatrix4fv(_modelViewUniform, 1, 0, matrixGL);
+        
+        glDrawElements(GL_TRIANGLES, sizeof(Indices)/sizeof(Indices[0]), GL_UNSIGNED_BYTE, 0);
+    }
     
-    [self render];
+    [_context presentRenderbuffer:GL_RENDERBUFFER];
 }
 
 // 清理屏幕，并渲染

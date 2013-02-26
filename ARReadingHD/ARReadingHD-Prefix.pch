@@ -19,7 +19,8 @@
 
 #ifdef	_DEBUG
 
-#define DD(x)        NSLog(@""#x" = %d\n", x);
+#define DD(x)       NSLog(@""#x" = %d\n", x);
+#define DP(p)       NSLog(@""#p" = (%f,%f)\n", p.x, p.y);
 
 #define	DNSLog(...);	NSLog(__VA_ARGS__);
 #define DNSLogMethod	NSLog(@"[%s] %@", class_getName([self class]), NSStringFromSelector(_cmd));

@@ -31,7 +31,7 @@
 
 @property (nonatomic, assign) CGSize cameraFrameSize;
 - (void)render;
-- (void)render:(ARRMarker*)markers;
+- (void)render:(ARRMarker*)markers num:(int)markers_num;
 
 - (void)setupViewWithFocalX:(float)focalX focalY:(float)focalY;
 

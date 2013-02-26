@@ -29,20 +29,24 @@
     memcpy(tempBuffer, baseAddress, sizeof(unsigned char) * width * height * 4);
 	unsigned char *p = tempBuffer;
     
-    int idxD = 0;
-	
-    // x，y轴 方向？
-	for (int y = height-1, idxS = width * 4 * y; y >= 0; y--) {
-		for (int x = width * 4 - 4; x >= 0; x-=4) {
-            colorBuffer[idxD++] = p[idxS+x];
-            colorBuffer[idxD++] = p[idxS+x+1];
-            colorBuffer[idxD++] = p[idxS+x+2];
-		}
-		idxS -= (width * 4);
-	}
+    // i <- j
+    for (int i=0, j=0; j<width*height*4; ) {
+        colorBuffer[i++] = p[j++];
+        colorBuffer[i++] = p[j++];
+        colorBuffer[i++] = p[j++];
+        j+=1; //skip alpha channel
+    }
     
-    DD(idxD);
-    
+//    // x，y轴 方向？
+//    int idxD = 0;
+//	for (int y = height-1, idxS = width * 4 * y; y >= 0; y--) {
+//		for (int x = width * 4 - 4; x >= 0; x-=4) {
+//            colorBuffer[idxD++] = p[idxS+x];
+//            colorBuffer[idxD++] = p[idxS+x+1];
+//            colorBuffer[idxD++] = p[idxS+x+2];
+//		}
+//		idxS -= (width * 4);
+//	}
     
     CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
 }
@@ -99,10 +103,9 @@
     int markers_num = 0;
     
     arrFindMarkers(detector, &markers, &markers_num);
-    DD(markers_num);
     
-    [self.glView render];
-//    [self.glView render:markers];
+//    [self.glView render];
+    [self.glView render:markers num:markers_num];
 }
 
 @end
