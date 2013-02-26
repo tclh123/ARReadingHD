@@ -10,7 +10,11 @@
 
 @implementation CameraController
 
+// init camera
 - (id)initWithFrameRect:(CGRect)frameRect {
+    //const
+    self.focalLength = 457.89;
+    
     // input
 	AVCaptureDeviceInput* input = [AVCaptureDeviceInput deviceInputWithDevice:[AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo] error:nil]; // 选了默认的 video device
     
@@ -25,10 +29,14 @@
                             dictionaryWithObject: [NSNumber numberWithInt:kCVPixelFormatType_32BGRA]
                             forKey: (id)kCVPixelBufferPixelFormatTypeKey];
     
-	// Session presets low, medium, high, 640x480...
+	// Session presets
     session = [[AVCaptureSession alloc] init];
 //    session.sessionPreset = AVCaptureSessionPreset1280x720;
-    session.sessionPreset = AVCaptureSessionPreset640x480;
+//    session.sessionPreset = AVCaptureSessionPreset640x480;
+    session.sessionPreset = AVCaptureSessionPresetMedium;   // 480x360
+    self.frameRatio = 480.0 / 360.0;
+    self.bufferHeight = 480.0;
+    self.bufferWidth = 360.0;
     
     if (!input) {
         //
@@ -36,14 +44,15 @@
 	[session addInput:input];
 	[session addOutput:output];
     
-	self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:session];
-	self.previewLayer.frame = frameRect;
-//    self.previewLayer.frame = CGRectMake(0, 0, 320, 240);
+    float frameWidth = frameRect.size.width;
+	float frameHeight = frameRect.size.width * self.frameRatio;
     
-    //[self.previewLayer setPosition:CGPointMake(CGRectGetMidX(frameRect), CGRectGetMidY(frameRect))];  //default
+	self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:session];
+//	self.previewLayer.frame = frameRect;
+    self.previewLayer.frame = CGRectMake(0, 0, frameWidth, frameHeight);
     
 //	self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;   // 保证 横纵比，剪切使全屏
-	self.previewLayer.zPosition = -5;   //为了 glView在前面？
+//	self.previewLayer.zPosition = -5;   //为了 glView在前面？
 
     return self;
 }

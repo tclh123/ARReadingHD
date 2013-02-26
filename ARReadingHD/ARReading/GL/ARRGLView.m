@@ -7,7 +7,6 @@
 //
 
 #import "ARRGLView.h"
-#import "CC3GLMatrix.h"
 
 // 顶点 信息的结构Vertex
 typedef struct {
@@ -82,6 +81,21 @@ GLubyte Indices[] = {
     return self;
 }
 
+- (void)setupViewWithFocalX:(float)focalX focalY:(float)focalY {
+    _focalX = focalX;
+    _focalY = focalY;
+    
+    _projection = [CC3GLMatrix matrix];
+    float left = -0.5 * self.cameraFrameSize.height / focalY;
+	float right = 0.5 * self.cameraFrameSize.height / focalY;
+	float bottom = -0.5 * self.cameraFrameSize.width / focalX;
+	float top = 0.5 * self.cameraFrameSize.width / focalX;
+    [_projection populateFromFrustumLeft:left andRight:right andBottom:bottom andTop:top andNear:1 andFar:1000];
+    
+    // glViewport 设置UIView中用于渲染的部分
+    glViewport(0, 0, self.frame.size.width, self.frame.size.height);
+}
+
 // 清理屏幕，并渲染
 - (void)render:(ARRMarker*)markers {
     
@@ -110,10 +124,7 @@ GLubyte Indices[] = {
     //glEnable(GL_DEPTH_TEST);    // 开启深度测试
     
     // projection
-    CC3GLMatrix *projection = [CC3GLMatrix matrix];
-    float h =4.0f* self.frame.size.height / self.frame.size.width;
-    [projection populateFromFrustumLeft:-2 andRight:2 andBottom:-h/2 andTop:h/2 andNear:4 andFar:10];   // 一个跟 frame.size对应的 平截头体 填充得projection
-    glUniformMatrix4fv(_projectionUniform, 1, GL_FALSE, projection.glMatrix);   // *_projectionUniform <- projection.glMatrix
+    glUniformMatrix4fv(_projectionUniform, 1, GL_FALSE, _projection.glMatrix);   // *_projectionUniform <- projection.glMatrix
     
     // model-view matrix
     CC3GLMatrix *modelView = [CC3GLMatrix matrix];
@@ -121,9 +132,6 @@ GLubyte Indices[] = {
 //    _currentRotation += displayLink.duration *90;       // _currentRotation 每秒会增加90度
 //    [modelView rotateBy:CC3VectorMake(_currentRotation, _currentRotation, 0)];  // 同时沿x，y轴旋转
     glUniformMatrix4fv(_modelViewUniform, 1, 0, modelView.glMatrix);
-    
-    // glViewport 设置UIView中用于渲染的部分
-    glViewport(0, 0, self.frame.size.width, self.frame.size.height);
     
     // 配置 shader属性 指针
     glVertexAttribPointer(_positionSlot, 3, GL_FLOAT, GL_FALSE,

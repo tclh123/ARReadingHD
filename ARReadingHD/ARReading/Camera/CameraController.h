@@ -12,11 +12,16 @@
 
 @interface CameraController : NSObject<AVCaptureVideoDataOutputSampleBufferDelegate> {
     AVCaptureSession              *session;
-    //AVCaptureVideoPreviewLayer    *previewLayer;
 }
 
-//@property (nonatomic, retain) AVCaptureSession              *session;
+//const
+@property (nonatomic, assign) float focalLength;
+
+// 
 @property (nonatomic, retain) AVCaptureVideoPreviewLayer    *previewLayer;
+@property (nonatomic, assign) float frameRatio;
+@property (nonatomic, assign) float bufferWidth;
+@property (nonatomic, assign) float bufferHeight;
 
 - (id)initWithFrameRect:(CGRect)frameRect;
 - (void)start;

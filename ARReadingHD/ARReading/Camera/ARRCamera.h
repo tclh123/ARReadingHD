@@ -21,9 +21,6 @@
 // GL
 @property (nonatomic, retain) ARRGLView *glView;
 
-@property (nonatomic, assign) int width;
-@property (nonatomic, assign) int height;
-
 - (void)copyToColorBuffer_24GBR:(CVPixelBufferRef)pixelBuffer;
 - (void)changeSizeWithWidth:(int)width height:(int)height;
 

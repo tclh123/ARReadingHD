@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GLView.h"
+#import "CC3GLMatrix.h"
 
 #include "ar.h"
 
@@ -22,9 +23,16 @@
     
     // internal
 //    float _currentRotation; // 维护旋转度数
+    
+    float _focalX;
+    float _focalY;
+    CC3GLMatrix *_projection;
 }
 
+@property (nonatomic, assign) CGSize cameraFrameSize;
 - (void)render;
 - (void)render:(ARRMarker*)markers;
+
+- (void)setupViewWithFocalX:(float)focalX focalY:(float)focalY;
 
 @end
