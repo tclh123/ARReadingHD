@@ -11,22 +11,33 @@
 
 #include "ar.h"
 
+//#define DP(p)       printf(""#p" = (%f,%f)\n", p.x, p.y);
+
 void arrMarkerGetTrans(ARRMarker *marker, float scale, float bufferWidth, float bufferHeight, float focalX, float focalY, float matrix[4][4], float matrixGL[16]) {
     int i;
     
     float				homography[3][3];
-//	float				matrixGL[16];   //OpenGL用的 变换矩阵???
+    
     ARRVec corners[4];
+
     corners[0] = marker->c1;
     corners[1] = marker->c2;
     corners[2] = marker->c3;
     corners[3] = marker->c4;
+    
+//    corners[0].x = 277.999969; corners[0].y = 115.756462;
+//    corners[1].x = 285.539673; corners[1].y = 255.670319;
+//    corners[2].x = 140.471878; corners[2].y = 261.435150;
+//    corners[3].x = 137.675323; corners[3].y = 119.435875;
+
     for (i=0; i<4; i++) {
         corners[i].x -= bufferWidth/2;
         corners[i].x /= focalX;
         corners[i].y -= bufferHeight/2;
         corners[i].y /= focalY;
     }
+    
+//    DP(corners[0]) DP(corners[1]) DP(corners[2]) DP(corners[3])
     
     // 1. 求单应性矩阵
 	float h[8];
@@ -100,6 +111,12 @@ void arrMarkerGetTrans(ARRMarker *marker, float scale, float bufferWidth, float 
 	matrixGL[ 2] = matrix[2][0];	matrixGL[ 6] = matrix[2][1];	matrixGL[10] = matrix[2][2];	matrixGL[14] = matrix[2][3];
 	matrixGL[ 3] = matrix[3][0];	matrixGL[ 7] = matrix[3][1];	matrixGL[11] = matrix[3][2];	matrixGL[15] = matrix[3][3];
     
+    
+//    printf("Matrix\n");
+//	printf("%+7.2f %+7.2f %+7.2f %+7.2f;\n", matrixGL[ 0], matrixGL[ 4], matrixGL[ 8], matrixGL[12]);
+//	printf("%+7.2f %+7.2f %+7.2f %+7.2f;\n", matrixGL[ 1], matrixGL[ 5], matrixGL[ 9], matrixGL[13]);
+//	printf("%+7.2f %+7.2f %+7.2f %+7.2f;\n", matrixGL[ 2], matrixGL[ 6], matrixGL[10], matrixGL[14]);
+//	printf("%+7.2f %+7.2f %+7.2f %+7.2f;\n\n", matrixGL[ 3], matrixGL[ 7], matrixGL[11], matrixGL[15]);
     
     ///////////////////////
     // rotate Matrix For OpenGL

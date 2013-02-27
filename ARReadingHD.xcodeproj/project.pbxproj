@@ -234,7 +234,6 @@
 		32F7C6CE16CBF7D5009A7DF6 = {
 			isa = PBXGroup;
 			children = (
-				322FE12416D7915600FA4CF9 /* OpenGLES.framework */,
 				32F7C6FD16CBFB21009A7DF6 /* ARR */,
 				32F7C6E316CBF7D6009A7DF6 /* ARReadingHD */,
 				32F7C6DC16CBF7D6009A7DF6 /* Frameworks */,
@@ -253,6 +252,7 @@
 		32F7C6DC16CBF7D6009A7DF6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				322FE12416D7915600FA4CF9 /* OpenGLES.framework */,
 				322FE12216D78E3200FA4CF9 /* QuartzCore.framework */,
 				32062CC716D4D5D800B37CD3 /* CoreMedia.framework */,
 				32062CC516D4D5D200B37CD3 /* CoreVideo.framework */,

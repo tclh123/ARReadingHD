@@ -34,9 +34,9 @@
 //    session.sessionPreset = AVCaptureSessionPreset1280x720;
 //    session.sessionPreset = AVCaptureSessionPreset640x480;
     session.sessionPreset = AVCaptureSessionPresetMedium;   // 480x360
-    self.frameRatio = 480.0 / 360.0;
-    self.bufferHeight = 480.0;
-    self.bufferWidth = 360.0;
+    self.frameRatio = 480.0 / 360.0;    // ratio 宽高比 4:3
+    self.bufferWidth = 480.0;
+    self.bufferHeight = 360.0;
     
     if (!input) {
         //
@@ -44,7 +44,7 @@
 	[session addInput:input];
 	[session addOutput:output];
     
-    float frameWidth = frameRect.size.width;
+    float frameWidth = frameRect.size.width;        // frameRect.size = (w 768, h 1024)
 	float frameHeight = frameRect.size.width * self.frameRatio;
     
 	self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:session];
